@@ -13,11 +13,14 @@ import { PromiseWrapper } from '@angular/core/src/facade/promise';
 
 // Mock config
 let pluginConfig = new PluginConfig({
-  getListsUrl: 'get-lists-url',
-  createRequestUrl: 'create-request-url',
-  acceptRequestUrl: 'accept-request-url',
-  rejectRequestUrl: 'reject-request-url',
-  participantId: 1
+    getListsUrl: 'get-lists-url',
+    createRequestUrl: 'create-request-url',
+    acceptRequestUrl: 'accept-request-url',
+    rejectRequestUrl: 'reject-request-url',
+    participantId: 1,
+    participantsPerPage: 10,
+    participantsSortBy: '',
+    participantsSortDesc: false
 });
 beforeEach(() => addProviders([
   { provide: PluginConfig, useValue: pluginConfig }

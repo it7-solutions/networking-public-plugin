@@ -12,8 +12,11 @@ export class ParticipantsService {
 
     constructor() {
         this.participants = [];
-        //this.participantUpdate = new Observable(observer => this.updateObserver = observer);
-        this.onUpdate = new Observable((observer: any) => this.updateObserver = observer);
+        this.onUpdate = new Observable<Participant[]>(this.setObserver);
+    }
+
+    setObserver(observer: Observer<Participant[]>){
+        this.updateObserver = observer;
     }
 
     setParticipants(participants:Participant[]){
