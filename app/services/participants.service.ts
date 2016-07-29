@@ -19,8 +19,8 @@ export class ParticipantsService {
 
     setParticipants(participants:Participant[]){
         this.participants = participants;
-        console.log('setParticipants !!!',this.participants.length);
-        //this._onUpdate.next(this.participants);
+        console.log('setParticipants !!!!!',this.participants.length);
+        this._onUpdate.next(this.participants);
     }
 
     getParticipants(): Participant[]{
