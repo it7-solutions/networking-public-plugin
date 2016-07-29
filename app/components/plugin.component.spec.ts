@@ -16,7 +16,8 @@ let pluginConfig = new PluginConfig({
   getListsUrl: 'get-lists-url',
   createRequestUrl: 'create-request-url',
   acceptRequestUrl: 'accept-request-url',
-  rejectRequestUrl: 'reject-request-url'
+  rejectRequestUrl: 'reject-request-url',
+  participantId: 1
 });
 beforeEach(() => addProviders([
   { provide: PluginConfig, useValue: pluginConfig }

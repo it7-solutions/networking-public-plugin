@@ -3,7 +3,7 @@ import { ParticipantsListHeaderColumnComponent } from './participants-list-heade
 
 @Component({
     selector: 'participants-list-header',
-    templateUrl: 'app/templates/participants-list-header.html',
+    templateUrl: '/app/templates/participants-list-header.html',
     directives: [ParticipantsListHeaderColumnComponent]
 })
 export class ParticipantsListHeaderComponent {

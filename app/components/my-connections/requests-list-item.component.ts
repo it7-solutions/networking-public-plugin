@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 
 @Component({
     selector: 'requests-list-item',
-    templateUrl: 'app/templates/requests-list-item.html'
+    templateUrl: '/app/templates/requests-list-item.html'
 })
 export class RequestsListItemComponent {
 

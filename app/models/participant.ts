@@ -1,8 +1,10 @@
 export class Participant {
-    id: number;
-    name: string;
-    firstName: string;
-    lastName: string;
+    registration_id: number;
+    fname: string;
+    lname: string;
     email: string;
     company: string;
+
+    _hidden: boolean;
+    _filteredOut: boolean;
 }

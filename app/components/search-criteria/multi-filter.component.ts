@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 
 @Component({
     selector: 'search-multi-filter',
-    templateUrl: 'app/templates/multi-filter.html'
+    templateUrl: '/app/templates/multi-filter.html'
 })
 export class MultiFilterComponent {
 

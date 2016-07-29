@@ -5,7 +5,7 @@ import { MultiFilterComponent } from './multi-filter.component';
 
 @Component({
     selector: 'search-criteria',
-    templateUrl: 'app/templates/search-criteria.html',
+    templateUrl: '/app/templates/search-criteria.html',
     directives: [KeywordsComponent, FilterComponent, MultiFilterComponent],
 })
 export class SearchCriteriaComponent {

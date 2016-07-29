@@ -3,7 +3,7 @@ import { RequestsListItemComponent } from './requests-list-item.component';
 
 @Component({
     selector: 'requests-list',
-    templateUrl: 'app/templates/requests-list.html',
+    templateUrl: '/app/templates/requests-list.html',
     directives: [RequestsListItemComponent]
 })
 export class RequestsListComponent {

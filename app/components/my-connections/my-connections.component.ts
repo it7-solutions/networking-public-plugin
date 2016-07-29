@@ -4,7 +4,7 @@ import { ConnectionsListComponent } from './connections-list.component';
 
 @Component({
     selector: 'my-connections',
-    templateUrl: 'app/templates/my-connections.html',
+    templateUrl: '/app/templates/my-connections.html',
     directives: [RequestsListComponent, ConnectionsListComponent]
 })
 export class MyConnectionsComponent {

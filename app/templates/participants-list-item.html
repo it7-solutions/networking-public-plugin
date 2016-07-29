@@ -1,4 +1,6 @@
-<div>
-    <span>Participant List Item (column1)</span>
-    <span>Participant List Item (column2)</span>
+<div *ngIf="!participant._hidden">
+    <span>{{participant.fname}}</span>
+    <span>{{participant.lname}}</span>
+    <span>{{participant.email}}</span>
+    <span>{{participant.company}}</span>
 </div>

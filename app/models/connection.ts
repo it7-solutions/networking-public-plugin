@@ -1,6 +1,7 @@
 export class Connection {
     id: string;
-    senderId: number;
-    recipientId: number;
+    request_id: number;
+    registration_id: number;
+    requested_id: number;
     status: string;
 }

@@ -1,8 +1,9 @@
 export class Request {
     id: string;
-    senderId: number;
-    recipientId: number;
+    registration_id: number;
+    requested_id: number;
     status: string;
     message: string;
-    isIncoming: boolean;
+
+    _isIncoming: boolean;
 }

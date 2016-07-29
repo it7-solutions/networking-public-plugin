@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 
 @Component({
     selector: 'participants-list-header-column',
-    templateUrl: 'app/templates/participants-list-header-column.html'
+    templateUrl: '/app/templates/participants-list-header-column.html'
 })
 export class ParticipantsListHeaderColumnComponent {
 

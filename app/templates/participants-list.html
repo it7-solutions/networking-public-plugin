@@ -1,6 +1,11 @@
-<div>Participants List</div>
+<div>
+    Participants List
+    <span (click)="resort()">resort</span>
+    <span (click)="refilter()">filter</span>
+    <span (click)="tt()">3030</span>
+    <span (click)="up()">UP</span>
+    <span (click)="add()">+10</span>
+</div>
 <participants-list-header></participants-list-header>
-<participants-list-item></participants-list-item>
-<participants-list-item></participants-list-item>
-<participants-list-item></participants-list-item>
+<participants-list-item *ngFor="let participant of list" [participant]="participant"></participants-list-item>
 
