@@ -12,3 +12,5 @@ import '@angular/router-deprecated';
 import '@angular/core/src/facade/promise';
 import '@angular/core/testing';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/Observable';
+import 'rxjs/Observer';
