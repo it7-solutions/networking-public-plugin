@@ -19,4 +19,5 @@ export function RunApplication(options: PluginOptions) {
     ]);
 }
 
+window['RunApplication'] = RunApplication;
 //bootstrap(PluginComponent);

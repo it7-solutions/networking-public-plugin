@@ -15,7 +15,9 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "webdriver:update": "webdriver-manager update"
+    "webdriver:update": "webdriver-manager update",
+    "build": "webpack",
+    "webpackstart": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -59,7 +61,10 @@
     "systemjs-builder": "^0.15.25",
     "tslint": "^3.7.4",
     "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "typings": "^1.0.4",
+    "ts-loader": "0.8.2",
+    "webpack": "1.13.0",
+    "webpack-dev-server": "1.14.1"
   },
   "repository": {}
 }
