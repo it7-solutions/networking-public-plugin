@@ -17,10 +17,10 @@ export class DataManagerService {
 
     constructor(
         private config: PluginConfig,
-         private participants: ParticipantsService,
-         private requests: RequestsService,
-         private connections: ConnectionsService
-//        private it7Ajax:It7AjaxService,
+        private participants: ParticipantsService,
+        private requests: RequestsService,
+        private connections: ConnectionsService
+//       private it7Ajax:It7AjaxService,
     ){}
 
     initData(): Promise<any> {
@@ -77,13 +77,17 @@ export class DataManagerService {
 
     private getMockData():any {
         var mod = this.mod;
+        var areas = ['relax','golf','rock','diving','dream','movie'];
         return {
             participant: _.map(_.range(400), function(n){
+
                 return {
                     company: mod + "Company for " + n,
                     email: n + "@co.com",
                     fname: n + "man",
                     lname: "family of " + n,
+                    language: Math.random()>0.5 ? 'ua' : 'ca',
+                    area_of_expertise: _.filter(areas,function(){return Math.random()>0.5}),
                     registration_id: n
                 }
             }),

@@ -15,10 +15,42 @@
     <script src="dist/app.bundle.js"></script>
     <script>
       var options = {
-        getListsUrl: '',
-        createRequestUrl: '',
-        acceptRequestUrl: '',
-        rejectRequestUrl: ''
+          getListsUrl: '',
+          createRequestUrl: '',
+          acceptRequestUrl: '',
+          rejectRequestUrl: '',
+
+          filters:[
+              {
+                  label: 'Language',
+                  field: 'language',
+                  values: [
+                      {label: 'Ukraine', key: 'ua-ua'},
+                      {label: 'Canada', key: 'ca-fr'}
+                  ]
+              },
+              {
+                  label: 'Area of expertise',
+                  field: 'area_of_expertise',
+                  values: [
+                      {label: 'Relax', key: 'relax'},
+                      {label: 'Golf', key: 'golf'},
+                      {label: 'Rock', key: 'rock'},
+                      {label: 'Diving', key: 'diving'},
+                      {label: 'Dream', key: 'dream'},
+                      {label: 'Movie', key: 'movie'}
+                  ]
+              }
+          ],
+
+          translations:[
+
+          ],
+
+          participantId: 10,
+          participantsPerPage: 10,
+          participantsSortBy: 'fname',
+          participantsSortDesc: false
       };
       RunApplication(options);
     </script>

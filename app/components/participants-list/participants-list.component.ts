@@ -6,6 +6,7 @@ import { Participant } from "../../models/participant";
 import { ParticipantsService } from '../../services/participants.service';
 import { ParticipantsListItemComponent } from './participants-list-item.component';
 import { ParticipantsListHeaderComponent } from './participants-list-header.component';
+import {Filter} from "../../models/filter";
 
 @Component({
     selector: 'participants-list',
@@ -72,7 +73,22 @@ export class ParticipantsListComponent {
         console.log('updateList',this.list.length);
     }
 
+    setFilters(keywords: string, filters: Filter[]){
+        this.applyFilters(filters);
+        this.applyFilters(filters);
+    }
 
+    private applyKeywords(keywords: string){
+        _.each(this.list, function(p:Participant) {
+            //p._filteredOut = p.registration_id%2 == odd;
+        })
+    }
+
+    private applyFilters(filters: Filter[]){
+        _.each(this.list, function(p:Participant) {
+            //p._filteredOut = p.registration_id%2 == odd;
+        })
+    }
 
 
 

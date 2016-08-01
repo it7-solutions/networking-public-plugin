@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 
+import { Filter } from "../models/filter";
+
 export interface PluginOptions {
     getListsUrl: string
     createRequestUrl: string
@@ -9,6 +11,8 @@ export interface PluginOptions {
     participantsPerPage: number
     participantsSortBy: string
     participantsSortDesc: boolean
+    filters: Filter[]
+    translations: any[]
 }
 
 @Injectable()
@@ -21,6 +25,8 @@ export class PluginConfig {
     participantsPerPage: number;
     participantsSortBy: string;
     participantsSortDesc: boolean;
+    filters: Filter[];
+    translations: any[];
 
     constructor(options:PluginOptions) {
         this.getListsUrl = options.getListsUrl;
@@ -31,5 +37,7 @@ export class PluginConfig {
         this.participantsPerPage = options.participantsPerPage;
         this.participantsSortBy = options.participantsSortBy;
         this.participantsSortDesc = options.participantsSortDesc;
+        this.filters = options.filters;
+        this.translations = options.translations;
     }
 }
