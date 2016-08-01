@@ -1,1 +1,6 @@
-<div>Filter</div>
+<div>
+  <label>{{filter.label}}</label>
+  <select>
+    <option *ngFor="let option of filter.values">{{option.label}}</option>
+  </select>
+</div>
