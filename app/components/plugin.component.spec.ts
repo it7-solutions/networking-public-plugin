@@ -18,6 +18,7 @@ let pluginConfig = new PluginConfig({
     acceptRequestUrl: 'accept-request-url',
     rejectRequestUrl: 'reject-request-url',
     filters: [],
+    searchField: 'name',
     translations: [],
     participantId: 1,
     participantsPerPage: 10,

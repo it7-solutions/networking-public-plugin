@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} from '@angular/core';
 
 import { PluginConfig }    from '../services/plugin.config';
+import { TranslationsService }    from '../services/translations.service';
 import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
 import { ConnectionsService } from '../services/connections.service'
@@ -8,6 +9,7 @@ import { DataManagerService } from '../services/data-manager.service'
 import { SearchCriteriaComponent } from './search-criteria/search-criteria.component'
 import { ParticipantsListComponent } from './participants-list/participants-list.component'
 import { MyConnectionsComponent } from './my-connections/my-connections.component'
+import { Filter } from "../models/filter";
 
 // import {enableProdMode} from '@angular/core';
 // enableProdMode();
@@ -16,9 +18,16 @@ import { MyConnectionsComponent } from './my-connections/my-connections.componen
     selector: 'it7-networking-public-plugin',
     templateUrl: '/app/templates/networking-public-plugin.html',
     directives: [SearchCriteriaComponent, ParticipantsListComponent, MyConnectionsComponent],
-    providers: [ParticipantsService, RequestsService, ConnectionsService, DataManagerService]
+    providers: [
+        TranslationsService,
+        ParticipantsService,
+        RequestsService,
+        ConnectionsService,
+        DataManagerService
+    ]
 })
 export class PluginComponent {
+    @ViewChild(ParticipantsListComponent) participantsList: ParticipantsListComponent;
 
     constructor(
         private pluginConfig: PluginConfig,
@@ -47,7 +56,14 @@ export class PluginComponent {
     }
 
     tmpUpdateParticipants(){
-        console.log('Update click');
-        this.dataManager.reinitData();
+        console.log('TMP');
+        var f:any[] = [
+            {value: 'ca-fr', field: 'language'},
+            {value: '', field: 'email'},
+            {value: ['rock', 'golf'], field: 'area_of_expertise'}
+            ];
+        this.participantsList.setFilters('man',<any[]> f);
+        this.participantsList.setSorting('fname', true);
+        //this.dataManager.reinitData();
     }
 }

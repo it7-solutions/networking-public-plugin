@@ -1,11 +1,6 @@
-<div>
-    Participants List
-    <span (click)="resort()">resort</span>
-    <span (click)="refilter()">filter</span>
-    <span (click)="tt()">3030</span>
-    <span (click)="up()">UP</span>
-    <span (click)="add()">+10</span>
-</div>
+<div>{{ 'Participants List' | translation:t }}</div>
+<div>{{ 'show' | translation:t }} {{ recordsShow }} {{ 'from' | translation:t }} {{ recordsFound }}</div>
 <participants-list-header></participants-list-header>
 <participants-list-item *ngFor="let participant of list" [participant]="participant"></participants-list-item>
+<div *ngIf="recordsShow < recordsFound" (click)="showMoreRecords()">{{ 'Show next' | translation:t }} {{visibleStep}}</div>
 

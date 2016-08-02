@@ -42,7 +42,7 @@ export class DataManagerService {
         this.participants.setParticipants(DataManagerService.normalizeParticipants(data));
         this.requests.setRequests(DataManagerService.normalizeRequests(data));
         this.connections.setConnections(DataManagerService.normalizeConnections(data));
-        console.log('syncData finish');
+        console.log('syncData finish == ', data);
     }
 
     private static normalizeParticipants(data: any): Participant[] {
@@ -79,14 +79,14 @@ export class DataManagerService {
         var mod = this.mod;
         var areas = ['relax','golf','rock','diving','dream','movie'];
         return {
-            participant: _.map(_.range(400), function(n){
+            participant: _.map(_.range(30), function(n){
 
                 return {
                     company: mod + "Company for " + n,
                     email: n + "@co.com",
-                    fname: n + "man",
+                    fname: n + (Math.random()>0.5 ? "man" : 'girl'),
                     lname: "family of " + n,
-                    language: Math.random()>0.5 ? 'ua' : 'ca',
+                    language: Math.random()>0.5 ? 'ua-ua' : 'ca-fr',
                     area_of_expertise: _.filter(areas,function(){return Math.random()>0.5}),
                     registration_id: n
                 }

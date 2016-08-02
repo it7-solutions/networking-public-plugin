@@ -1,10 +1,12 @@
-export class Filter {
+export interface Filter {
     label: string;
     field: number;
-    values: FilterValue[]
+    values: FilterValue[];
+    value?: any;
+    multi?: boolean;
 }
 
-export class FilterValue {
+export interface FilterValue {
     label: string;
     key: string;
 }

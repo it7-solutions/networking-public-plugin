@@ -12,6 +12,7 @@ export interface PluginOptions {
     participantsSortBy: string
     participantsSortDesc: boolean
     filters: Filter[]
+    searchField: string
     translations: any[]
 }
 
@@ -26,6 +27,7 @@ export class PluginConfig {
     participantsSortBy: string;
     participantsSortDesc: boolean;
     filters: Filter[];
+    searchField: string;
     translations: any[];
 
     constructor(options:PluginOptions) {
@@ -38,6 +40,7 @@ export class PluginConfig {
         this.participantsSortBy = options.participantsSortBy;
         this.participantsSortDesc = options.participantsSortDesc;
         this.filters = options.filters;
+        this.searchField = options.searchField;
         this.translations = options.translations;
     }
 }
