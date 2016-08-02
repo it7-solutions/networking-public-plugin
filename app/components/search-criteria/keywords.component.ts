@@ -5,5 +5,9 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
     templateUrl: '/app/templates/keywords.html'
 })
 export class KeywordsComponent {
+    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
+    onChange($event: any) {
+      this.notify.emit($event.target.value);
+    }
 }
