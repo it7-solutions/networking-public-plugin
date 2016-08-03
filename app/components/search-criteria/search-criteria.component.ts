@@ -13,8 +13,10 @@ import { MultiFilterComponent } from './multi-filter.component';
 })
 export class SearchCriteriaComponent {
     filters: Filter[];
+    keywords: string;
 
     constructor(private config: PluginConfig) {
+      this.keywords = 'default';
       this.filters = config.filters;
       console.log(config.filters);
     }
