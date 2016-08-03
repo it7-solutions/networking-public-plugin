@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild } from '@angular/core';
 
 import { PluginConfig } from '../../services/plugin.config';
 import { Filter } from "../../models/filter";
@@ -8,9 +8,10 @@ import { Filter } from "../../models/filter";
     templateUrl: '/app/templates/multi-filter.html'
 })
 export class MultiFilterComponent {
+    @ViewChild('select') selectElRef: any;
     @Input() filter: Filter;
 
-    @Output() notify: EventEmitter<string[]> = new EventEmitter<string[]>();
+    @Output() notify: EventEmitter<Filter> = new EventEmitter<Filter>();
 
     // get selected values and put them into array
     getValues(select: any): string[] {
@@ -24,7 +25,21 @@ export class MultiFilterComponent {
       return values;
     }
 
-    onMultiFilterChange($event: any) {
-      this.notify.emit(this.getValues($event.target));
+    onMultiFilterChange($event:any) {
+      this.filter.value = this.getValues($event.target) as any;
+      this.notify.emit(this.filter);
+    }
+
+    ngAfterViewInit() {
+      this.updateSelectList();
+    }
+
+    updateSelectList() {
+      console.log('works');
+      console.log(this);
+      let options = this.selectElRef.nativeElement.options;
+      for (let i = 0; i < options.length; i++) {
+        options[i].selected = this.filter.value && this.filter.value.indexOf(options[i].value) > -1;
+      }
     }
 }

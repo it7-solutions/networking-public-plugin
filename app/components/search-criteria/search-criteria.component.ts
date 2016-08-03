@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} from '@angular/core';
 
 import { PluginConfig } from '../../services/plugin.config';
 import { Filter } from "../../models/filter";
 import { KeywordsComponent } from './keywords.component';
 import { FilterComponent } from './filter.component';
 import { MultiFilterComponent } from './multi-filter.component';
+import * as _ from "underscore";
 
 @Component({
     selector: 'search-criteria',
@@ -12,6 +13,7 @@ import { MultiFilterComponent } from './multi-filter.component';
     directives: [KeywordsComponent, FilterComponent, MultiFilterComponent],
 })
 export class SearchCriteriaComponent {
+    @ViewChild(MultiFilterComponent) multiFilter: MultiFilterComponent;
     filters: Filter[];
     keywords: string;
 
@@ -23,10 +25,17 @@ export class SearchCriteriaComponent {
     onKeywordNotify(message:string):void {
       console.log(message);
     }
-    onFilterNotify(message:string):void {
-      console.log(message);
+    onFilterNotify(filter: Filter):void {
+      console.log(filter);
     }
     onMultiFilterNotify(message:string):void {
       console.log(message);
+    }
+
+    onResetClick() {
+        _.each(this.filters, function (f) {
+          f.value = '';
+        });
+        this.multiFilter.updateSelectList();
     }
 }
