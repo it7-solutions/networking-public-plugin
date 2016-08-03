@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 export class KeywordsComponent {
     @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
-    onChange($event: any) {
+    onKeywordChange($event: any) {
       this.notify.emit($event.target.value);
     }
 }

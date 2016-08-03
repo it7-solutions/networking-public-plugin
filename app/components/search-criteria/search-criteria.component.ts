@@ -18,7 +18,7 @@ export class SearchCriteriaComponent {
       this.filters = config.filters;
       console.log(config.filters);
     }
-    onNotify(message:string):void {
+    onKeywordNotify(message:string):void {
       console.log(message);
     }
 }
