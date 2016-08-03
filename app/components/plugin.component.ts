@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} fr
 
 import { PluginConfig }    from '../services/plugin.config';
 import { TranslationsService }    from '../services/translations.service';
+import { TranslationPipe } from "../pipes/translation.pipe";
 import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
 import { ConnectionsService } from '../services/connections.service'
@@ -24,7 +25,8 @@ import { Filter } from "../models/filter";
         RequestsService,
         ConnectionsService,
         DataManagerService
-    ]
+    ],
+    pipes: [TranslationPipe]
 })
 export class PluginComponent {
     @ViewChild(ParticipantsListComponent) participantsList: ParticipantsListComponent;

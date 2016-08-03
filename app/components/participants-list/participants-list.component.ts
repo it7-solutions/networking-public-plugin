@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 import * as _ from 'underscore';
 
 import { PluginConfig } from "../../services/plugin.config";
-import {TranslationPipe} from "../../pipes/translation.pipe";
-import {TranslationsService} from "../../services/translations.service";
+import { TranslationPipe } from "../../pipes/translation.pipe";
 import { Participant } from "../../models/participant";
 import { ParticipantsService } from '../../services/participants.service';
 import { ParticipantsListItemComponent } from './participants-list-item.component';
@@ -34,7 +33,6 @@ export class ParticipantsListComponent {
 
     constructor(
         private config: PluginConfig,
-        public t:TranslationsService,
         private participants: ParticipantsService
     ) {
         this.sortBy = config.participantsSortBy;

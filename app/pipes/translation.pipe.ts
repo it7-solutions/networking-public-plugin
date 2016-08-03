@@ -7,7 +7,10 @@ import { TranslationsService } from '../services/translations.service';
 })
 export class TranslationPipe implements PipeTransform {
 
-    transform(text: string, service: TranslationsService ): string {
-        return service.translate(text);
+    constructor(public service:TranslationsService) {
+    }
+
+    transform(text: string): string {
+        return this.service.translate(text);
     }
 }

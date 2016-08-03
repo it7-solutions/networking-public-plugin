@@ -1,6 +1,6 @@
-<div>{{ 'Participants List' | translation:t }}</div>
-<div>{{ 'show' | translation:t }} {{ recordsShow }} {{ 'from' | translation:t }} {{ recordsFound }}</div>
+<div>{{ 'Participants List' | translation }}</div>
+<div>{{ 'show' | translation }} {{ recordsShow }} {{ 'from' | translation }} {{ recordsFound }}</div>
 <participants-list-header></participants-list-header>
 <participants-list-item *ngFor="let participant of list" [participant]="participant"></participants-list-item>
-<div *ngIf="recordsShow < recordsFound" (click)="showMoreRecords()">{{ 'Show next' | translation:t }} {{visibleStep}}</div>
+<div *ngIf="recordsShow < recordsFound" (click)="showMoreRecords()">{{ 'Show next' | translation }} {{visibleStep}}</div>
 
