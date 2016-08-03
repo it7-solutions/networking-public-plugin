@@ -26,4 +26,7 @@ export class SearchCriteriaComponent {
     onFilterNotify(message:string):void {
       console.log(message);
     }
+    onMultiFilterNotify(message:string):void {
+      console.log(message);
+    }
 }

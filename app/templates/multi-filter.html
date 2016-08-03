@@ -1,6 +1,6 @@
 <div>
   <label>{{filter.label}}</label>
-  <select multiple>
+  <select multiple (change)="onMultiFilterChange($event)">
     <option *ngFor="let option of filter.values" [value]="option.key">{{option.label}}</option>
   </select>
 </div>
