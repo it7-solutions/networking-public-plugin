@@ -1,1 +1,5 @@
-<div>Requests List Item</div>
+<div *ngIf="request._isIncoming">
+    <span>Requests #{{ request.id }}</span>
+    <button (click)="onAcceptClick()">{{ 'Accept' | translation }}</button>
+    <button (click)="onRejectClick()">{{ 'Reject' | translation }}</button>
+</div>

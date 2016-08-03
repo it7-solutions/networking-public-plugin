@@ -1,8 +1,10 @@
 ///<reference path="../typings/index.d.ts"/>
 import { bootstrap }    from '@angular/platform-browser-dynamic';
+import { PLATFORM_PIPES } from '@angular/core';
 
 import { PluginComponent } from './components/plugin.component';
 import { PluginConfig, PluginOptions }    from './services/plugin.config';
+import { TranslationPipe }    from './pipes/translation.pipe';
 
 export function RunApplication(options: PluginOptions) {
 
@@ -15,7 +17,8 @@ export function RunApplication(options: PluginOptions) {
     //  so other components/services can consume it.
     //
     bootstrap(PluginComponent, [
-        { provide: PluginConfig, useValue: menuConfig }
+        { provide: PluginConfig, useValue: menuConfig },
+        [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
     ]);
 }
 

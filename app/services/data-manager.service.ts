@@ -14,6 +14,7 @@ import {ConnectionsService} from './connections.service'
 @Injectable()
 export class DataManagerService {
     private mod: string;
+    private participantId: number;
 
     constructor(
         private config: PluginConfig,
@@ -21,7 +22,9 @@ export class DataManagerService {
         private requests: RequestsService,
         private connections: ConnectionsService
 //       private it7Ajax:It7AjaxService,
-    ){}
+    ){
+        this.participantId = config.participantId
+    }
 
     initData(): Promise<any> {
         this.mod = 'OR ';
@@ -40,7 +43,7 @@ export class DataManagerService {
 
     private syncData(data: any){
         this.participants.setParticipants(DataManagerService.normalizeParticipants(data));
-        this.requests.setRequests(DataManagerService.normalizeRequests(data));
+        this.requests.setRequests(DataManagerService.normalizeRequests(data, this.participantId));
         this.connections.setConnections(DataManagerService.normalizeConnections(data));
         console.log('syncData finish == ', data);
     }
@@ -55,9 +58,10 @@ export class DataManagerService {
         }
     }
 
-    private static normalizeRequests(data: any): Request[] {
+    private static normalizeRequests(data: any, id: number): Request[] {
         if(data && data.request && _.isArray(data.request)){
-            return _.each(data.request, function(raw){
+            return _.each(data.request, function(raw: Request){
+                raw._isIncoming = raw.requested_id === id;
                 return raw;
             }) as Request[];
         } else {

@@ -7,4 +7,8 @@ import {Participant} from "../../models/participant";
 })
 export class ParticipantsListItemComponent {
     @Input() participant: Participant;
+
+    getInTouchClick(){
+        alert('Function not implemented!');
+    }
 }

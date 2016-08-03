@@ -1,3 +1,2 @@
 <div>Connections List</div>
-<connections-list-item></connections-list-item>
-<connections-list-item></connections-list-item>
+<connections-list-item *ngFor="let connection of list" [connection]="connection"></connections-list-item>

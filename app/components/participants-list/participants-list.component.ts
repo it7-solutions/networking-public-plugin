@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 import * as _ from 'underscore';
 
 import { PluginConfig } from "../../services/plugin.config";
-import { TranslationPipe } from "../../pipes/translation.pipe";
 import { Participant } from "../../models/participant";
 import { ParticipantsService } from '../../services/participants.service';
 import { ParticipantsListItemComponent } from './participants-list-item.component';
@@ -12,8 +11,7 @@ import {Filter} from "../../models/filter";
 @Component({
     selector: 'participants-list',
     templateUrl: '/app/templates/participants-list.html',
-    directives: [ParticipantsListItemComponent, ParticipantsListHeaderComponent],
-    pipes: [TranslationPipe]
+    directives: [ParticipantsListItemComponent, ParticipantsListHeaderComponent]
 })
 export class ParticipantsListComponent {
     @Input() list: Participant[];
