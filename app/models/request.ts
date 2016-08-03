@@ -1,3 +1,5 @@
+import { Participant } from '../models/participant';
+
 export class Request {
     id: string;
     registration_id: number;
@@ -6,4 +8,6 @@ export class Request {
     message: string;
 
     _isIncoming: boolean;
+    _participant_id: number;
+    _participant: Participant;
 }

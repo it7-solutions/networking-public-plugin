@@ -2,14 +2,16 @@ import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/toPromise';
 import * as _ from 'underscore';
 
-// import {It7AjaxService} from './it7-ajax.service'
 import {PluginConfig} from './plugin.config';
+import {It7ErrorService} from "./it7-error.service";
+// import {It7AjaxService} from './it7-ajax.service'
 import {Participant} from '../models/participant'
 import {Request} from '../models/request'
 import {Connection} from '../models/connection'
 import {ParticipantsService} from './participants.service';
 import {RequestsService} from './requests.service';
 import {ConnectionsService} from './connections.service'
+import {connect} from "net";
 
 @Injectable()
 export class DataManagerService {
@@ -18,6 +20,7 @@ export class DataManagerService {
 
     constructor(
         private config: PluginConfig,
+        private err: It7ErrorService,
         private participants: ParticipantsService,
         private requests: RequestsService,
         private connections: ConnectionsService
@@ -42,17 +45,51 @@ export class DataManagerService {
     }
 
     private syncData(data: any){
-        this.participants.setParticipants(DataManagerService.normalizeParticipants(data));
-        this.requests.setRequests(DataManagerService.normalizeRequests(data, this.participantId));
-        this.connections.setConnections(DataManagerService.normalizeConnections(data));
+        var participants = DataManagerService.normalizeParticipants(data);
+        var requests = DataManagerService.normalizeRequests(data, this.participantId);
+        var connection = DataManagerService.normalizeConnections(data, this.participantId);
+
+        this.linkData(participants, requests, connection);
+
+        this.participants.setParticipants(participants);
+        this.requests.setRequests(requests);
+        this.connections.setConnections(connection);
+
         console.log('syncData finish == ', data);
+    }
+
+    private linkData(participants:Participant[], requests:Request[], connections:Connection[]) {
+        var participantsById = {};
+        _.each(participants, (p:Participant) => {
+            participantsById[p.registration_id] = p;
+        });
+
+        _.each(requests, (r: Request) => {
+            var participant = participantsById[r._participant_id];
+            if(participant){
+                r._participant = participant;
+                participant._request = r;
+            } else {
+                this.err.fire('Critical error: No Participant found with the specified id(' + r._participant_id
+                    + ') for the connection with the Request(#' + r.id + ')');
+            }
+        });
+
+        _.each(connections, (c: Connection) => {
+            var participant = participantsById[c._participant_id];
+            if(participant){
+                c._participant = participant;
+                participant._connection = c;
+            } else {
+                this.err.fire('Critical error: No Participant found with the specified id(' + c._participant_id
+                    + ') for the connection with the Connection(#' + c.id + ')');
+            }
+        });
     }
 
     private static normalizeParticipants(data: any): Participant[] {
         if(data && data.participant && _.isArray(data.participant)){
-            return _.each(data.participant, function(raw){
-                return raw;
-            }) as Participant[];
+            return _.each(data.participant, raw => raw) as Participant[];
         } else {
             return [];
         }
@@ -60,8 +97,9 @@ export class DataManagerService {
 
     private static normalizeRequests(data: any, id: number): Request[] {
         if(data && data.request && _.isArray(data.request)){
-            return _.each(data.request, function(raw: Request){
+            return _.each(data.request, (raw: Request) => {
                 raw._isIncoming = raw.requested_id === id;
+                raw._participant_id = raw._isIncoming ?  raw.registration_id : raw.requested_id;
                 return raw;
             }) as Request[];
         } else {
@@ -69,9 +107,11 @@ export class DataManagerService {
         }
     }
 
-    private static normalizeConnections(data: any): Connection[] {
+    private static normalizeConnections(data: any, id: number): Connection[] {
         if(data && data.connections && _.isArray(data.connections)){
-            return _.each(data.connections, function(raw){
+            return _.each(data.connections, (raw: Connection) => {
+                var isIncoming = raw.requested_id === id;
+                raw._participant_id = isIncoming ?  raw.registration_id : raw.requested_id;
                 return raw;
             }) as Connection[];
         } else {

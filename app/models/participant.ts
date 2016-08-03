@@ -1,3 +1,6 @@
+import {Request} from "./request";
+import {Connection} from "./connection";
+
 export interface Participant {
     registration_id: number;
     fname: string;
@@ -7,6 +10,8 @@ export interface Participant {
     language?: string;
     area_of_expertise?: string;
 
+    _request?: Request;
+    _connection?: Connection;
     _hidden: boolean;
     _filteredOut: boolean;
 }

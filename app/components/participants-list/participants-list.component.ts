@@ -72,12 +72,10 @@ export class ParticipantsListComponent {
     }
 
     private sort(){
-        var sortBy = this.sortBy;
-        var sortDesc = this.sortDesc;
-        this.list.sort(function(p1:Participant, p2:Participant){
+        this.list.sort((p1:Participant, p2:Participant) => {
             //return !reverse ? p1.registration_id - p2.registration_id : p2.registration_id - p1.registration_id;
-            var v1 = sortDesc ? p2[sortBy] : p1[sortBy];
-            var v2 = sortDesc ? p1[sortBy] : p2[sortBy];
+            var v1 = this.sortDesc ? p2[this.sortBy] : p1[this.sortBy];
+            var v2 = this.sortDesc ? p1[this.sortBy] : p2[this.sortBy];
             return v1.localeCompare(v2);
         });
     }

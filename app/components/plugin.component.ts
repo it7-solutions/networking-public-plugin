@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} from '@angular/core';
 
 import { PluginConfig }    from '../services/plugin.config';
+import { It7ErrorService } from "../services/it7-error.service";
 import { TranslationsService }    from '../services/translations.service';
 import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
@@ -19,6 +20,7 @@ import { Filter } from "../models/filter";
     templateUrl: '/app/templates/networking-public-plugin.html',
     directives: [SearchCriteriaComponent, ParticipantsListComponent, MyConnectionsComponent],
     providers: [
+        It7ErrorService,
         TranslationsService,
         ParticipantsService,
         RequestsService,
