@@ -8,5 +8,9 @@ import { Filter } from "../../models/filter";
 })
 export class FilterComponent {
     @Input() filter: Filter;
+    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
 
+    onFilterChange($event: any) {
+      this.notify.emit($event.target.value);
+    }
 }

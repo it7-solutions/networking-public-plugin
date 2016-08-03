@@ -23,4 +23,7 @@ export class SearchCriteriaComponent {
     onKeywordNotify(message:string):void {
       console.log(message);
     }
+    onFilterNotify(message:string):void {
+      console.log(message);
+    }
 }

@@ -1,6 +1,7 @@
 <div>
   <label>{{filter.label}}</label>
-  <select>
+  <select (change)="onFilterChange($event)" [value]="filter.value">
+    <option value="0"></option>
     <option *ngFor="let option of filter.values" [value]="option.key">{{option.label}}</option>
   </select>
 </div>
