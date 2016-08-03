@@ -24,6 +24,7 @@ export class SearchCriteriaComponent {
     }
     onKeywordNotify(message:string):void {
       console.log(message);
+      this.keywords = message;
     }
     onFilterNotify(filter: Filter):void {
       console.log(filter);
@@ -37,5 +38,6 @@ export class SearchCriteriaComponent {
           f.value = '';
         });
         this.multiFilter.updateSelectList();
+        this.keywords = '';
     }
 }
