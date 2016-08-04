@@ -35,8 +35,6 @@ export class MultiFilterComponent {
     }
 
     updateSelectList() {
-      console.log('works');
-      console.log(this);
       let options = this.selectElRef.nativeElement.options;
       for (let i = 0; i < options.length; i++) {
         options[i].selected = this.filter.value && this.filter.value.indexOf(options[i].value) > -1;

@@ -7,6 +7,11 @@ import { FilterComponent } from './filter.component';
 import { MultiFilterComponent } from './multi-filter.component';
 import * as _ from "underscore";
 
+export interface SearchCriteria {
+  filters: Filter[],
+  keywords: string
+}
+
 @Component({
     selector: 'search-criteria',
     templateUrl: '/app/templates/search-criteria.html',
@@ -14,11 +19,12 @@ import * as _ from "underscore";
 })
 export class SearchCriteriaComponent {
     @ViewChild(MultiFilterComponent) multiFilter: MultiFilterComponent;
+    @Output() notify: EventEmitter<SearchCriteria> = new EventEmitter<SearchCriteria>();
     filters: Filter[];
     keywords: string;
 
     constructor(private config: PluginConfig) {
-      this.keywords = 'default';
+      this.keywords = '';
       this.filters = config.filters;
       console.log(config.filters);
     }
@@ -39,5 +45,13 @@ export class SearchCriteriaComponent {
         });
         this.multiFilter.updateSelectList();
         this.keywords = '';
+        this.onCriteriaChange();
+    }
+
+    onCriteriaChange() {
+      this.notify.emit({
+        keywords: this.keywords,
+        filters: this.filters
+      });
     }
 }

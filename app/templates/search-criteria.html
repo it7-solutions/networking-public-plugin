@@ -1,4 +1,6 @@
-<search-keywords [keywords]="keywords" (notify)="onKeywordNotify($event)"></search-keywords>
-<search-filter [filter]="filters[0]" (notify)="onFilterNotify($event)"></search-filter>
-<search-multi-filter [filter]="filters[1]" (notify)="onMultiFilterNotify($event)"></search-multi-filter>
+<div (keyup)="onCriteriaChange($event)" (change)="onCriteriaChange($event)">
+  <search-keywords [keywords]="keywords" (notify)="onKeywordNotify($event)"></search-keywords>
+  <search-filter [filter]="filters[0]" (notify)="onFilterNotify($event)"></search-filter>
+  <search-multi-filter [filter]="filters[1]" (notify)="onMultiFilterNotify($event)"></search-multi-filter>
+</div>
 <button (click)="onResetClick()">RESET</button>

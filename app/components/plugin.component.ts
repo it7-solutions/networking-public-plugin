@@ -8,7 +8,7 @@ import { RequestsService } from '../services/requests.service'
 import { ConnectionsService } from '../services/connections.service'
 import { DataManagerService } from '../services/data-manager.service'
 import { RequestPopupService } from '../services/request-popup.service'
-import { SearchCriteriaComponent } from './search-criteria/search-criteria.component'
+import { SearchCriteriaComponent, SearchCriteria } from './search-criteria/search-criteria.component'
 import { ParticipantsListComponent } from './participants-list/participants-list.component'
 import { MyConnectionsComponent } from './my-connections/my-connections.component'
 import { RequestPopupComponent } from './request-popup.component'
@@ -75,5 +75,10 @@ export class PluginComponent {
         this.participantsList.setFilters('man',<any[]> f);
         this.participantsList.setSorting('fname', true);
         //this.dataManager.reinitData();
+    }
+
+    onCriteriaNotify(criteria: SearchCriteria):void {
+      console.log('message from plugin.component.ts',criteria);
+      this.participantsList.setFilters(criteria.keywords, criteria.filters);
     }
 }

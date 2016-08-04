@@ -1,7 +1,7 @@
 <div (click)="tmpUpdateParticipants()">Filter ca</div>
 <h1>{{ 'Networking' | translation }}</h1>
 <h2>{{ 'Welcome to networking. Here you can touch participants and reject requests.' | translation }}</h2>
-<search-criteria></search-criteria>
+<search-criteria (notify)="onCriteriaNotify($event)"></search-criteria>
 <table>
     <tr>
         <td><participants-list></participants-list></td>
