@@ -7,9 +7,11 @@ import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
 import { ConnectionsService } from '../services/connections.service'
 import { DataManagerService } from '../services/data-manager.service'
+import { RequestPopupService } from '../services/request-popup.service'
 import { SearchCriteriaComponent } from './search-criteria/search-criteria.component'
 import { ParticipantsListComponent } from './participants-list/participants-list.component'
 import { MyConnectionsComponent } from './my-connections/my-connections.component'
+import { RequestPopupComponent } from './request-popup.component'
 import { Filter } from "../models/filter";
 
 // import {enableProdMode} from '@angular/core';
@@ -18,14 +20,20 @@ import { Filter } from "../models/filter";
 @Component({
     selector: 'it7-networking-public-plugin',
     templateUrl: '/app/templates/networking-public-plugin.html',
-    directives: [SearchCriteriaComponent, ParticipantsListComponent, MyConnectionsComponent],
+    directives: [
+        SearchCriteriaComponent,
+        ParticipantsListComponent,
+        MyConnectionsComponent,
+        RequestPopupComponent
+    ],
     providers: [
         It7ErrorService,
         TranslationsService,
         ParticipantsService,
         RequestsService,
         ConnectionsService,
-        DataManagerService
+        DataManagerService,
+        RequestPopupService
     ]
 })
 export class PluginComponent {

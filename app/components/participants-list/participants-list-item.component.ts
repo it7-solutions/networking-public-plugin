@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+
 import {Participant} from "../../models/participant";
+import { RequestPopupService } from "../../services/request-popup.service";
 
 @Component({
     selector: 'participants-list-item',
@@ -8,7 +10,13 @@ import {Participant} from "../../models/participant";
 export class ParticipantsListItemComponent {
     @Input() participant: Participant;
 
+
+    constructor( private requestPopupService: RequestPopupService) {
+    }
+
     getInTouchClick(){
-        alert('Function not implemented!');
+        this.requestPopupService.showPopup({
+            recipient: this.participant
+        });
     }
 }

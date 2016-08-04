@@ -9,11 +9,11 @@ export class RequestsListItemComponent {
     @Input() request: Request;
 
     onAcceptClick(){
-        alert('ACCEPT Function not implemented!');
+        alert('ACCEPT Function not implemented! ('+this.request.id+')');
     }
 
     onRejectClick(){
-        alert('REJECT Function not implemented!');
+        alert('REJECT Function not implemented! ('+this.request.id+')');
     }
 
 }
