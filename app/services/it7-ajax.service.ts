@@ -39,16 +39,19 @@ export class It7AjaxService {
     }
 
     post(url: string, data: any): Promise<any> {
-        console.log('send');
-        return Promise.resolve(this.getMockData(url));
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({ headers: headers });
 
-        // let headers = new Headers({'Content-Type': 'application/json'});
-        // let options = new RequestOptions({ headers: headers });
-        // return this.http
-        //     .post(url, JSON.stringify(data), {headers: headers})
-        //     .toPromise()
-        //     .then(res => this.checkResponse(res))
-        //     .catch(this.handleError);
+        console.log('send');
+
+        return this.http
+            .post(url, JSON.stringify(data), options)
+            //.get(url)
+            .toPromise()
+            .then(res => this.checkResponse(res))
+            .catch(this.handleError);
+
+        //return Promise.resolve(this.getMockData(url));
     }
 
     private checkResponse(res:Response): any{
@@ -67,7 +70,7 @@ export class It7AjaxService {
 
     private getMockData(mod: string = ''):any {
         var areas = ['relax','golf','rock','diving','dream','movie'];
-        return {
+        var m = {
             participant: _.map(_.range(30), function(n){
 
                 return {
@@ -127,6 +130,8 @@ export class It7AjaxService {
                 }
             ]
         };
-
+        console.log('mockData');
+        console.log(JSON.stringify(m));
+        return m;
     }
 }
