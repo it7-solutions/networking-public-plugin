@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+
 import {Request} from "../../models/request";
+import {DataManagerService} from "../../services/data-manager.service";
 
 @Component({
     selector: 'requests-list-item',
@@ -8,12 +10,15 @@ import {Request} from "../../models/request";
 export class RequestsListItemComponent {
     @Input() request: Request;
 
+    constructor(private dataManager: DataManagerService) {
+    }
+
     onAcceptClick(){
-        alert('ACCEPT Function not implemented! ('+this.request.id+')');
+        this.dataManager.acceptRequest(this.request.id);
     }
 
     onRejectClick(){
-        alert('REJECT Function not implemented! ('+this.request.id+')');
+        this.dataManager.rejectRequest(this.request.id);
     }
 
 }

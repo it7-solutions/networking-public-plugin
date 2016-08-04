@@ -1,7 +1,7 @@
 import { Participant } from '../models/participant';
 
 export class Request {
-    id: string;
+    id: number;
     registration_id: number;
     requested_id: number;
     status: string;

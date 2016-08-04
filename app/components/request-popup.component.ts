@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} from '@angular/core';
 
-import { RequestPopupService, RequestPopup }    from '../services/request-popup.service';
-import { It7ErrorService }    from '../services/it7-error.service';
+import { RequestPopupService, RequestPopup } from '../services/request-popup.service';
+import { It7ErrorService } from '../services/it7-error.service';
+import { DataManagerService } from '../services/data-manager.service';
 
 @Component({
     selector: 'request-popup',
@@ -12,9 +13,10 @@ export class RequestPopupComponent {
 
     constructor(
         private err: It7ErrorService,
-        private RequestPopupService: RequestPopupService
+        private requestPopupService: RequestPopupService,
+        private dataManager: DataManagerService
     ) {
-        this.RequestPopupService.popup.subscribe(popup => this.showPopup(popup));
+        this.requestPopupService.popup.subscribe(popup => this.showPopup(popup));
     }
 
     showPopup(popup: RequestPopup){
@@ -26,7 +28,8 @@ export class RequestPopupComponent {
     }
 
     onSendClick(){
-        alert('SEND function not implement ('+this.popup.recipient.registration_id+', '+this.popup.message+')');
+        this.dataManager.sendRequest(this.popup.recipient.registration_id, this.popup.message);
+        this.popup = undefined;
     }
 
     onCancelClick(){

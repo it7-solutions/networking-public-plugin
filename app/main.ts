@@ -1,6 +1,9 @@
 ///<reference path="../typings/index.d.ts"/>
 import { bootstrap }    from '@angular/platform-browser-dynamic';
 import { PLATFORM_PIPES } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+// import { BaseRequestOptions, Http } from '@angular/http';
+// import { MockBackend } from '@angular/http/testing';
 
 import { PluginComponent } from './components/plugin.component';
 import { PluginConfig, PluginOptions }    from './services/plugin.config';
@@ -17,6 +20,18 @@ export function RunApplication(options: PluginOptions) {
     //  so other components/services can consume it.
     //
     bootstrap(PluginComponent, [
+        HTTP_PROVIDERS,
+        // BaseRequestOptions,
+        // MockBackend,
+        // {
+        //     provide: Http,
+        //     useFactory: (backend:any, options:any) => {
+        //         console.log('new http');
+        //         return new Http(backend, options);
+        //     },
+        //     deps: [MockBackend, BaseRequestOptions]
+        // },
+
         { provide: PluginConfig, useValue: menuConfig },
         [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
     ]);

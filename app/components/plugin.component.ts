@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} fr
 
 import { PluginConfig }    from '../services/plugin.config';
 import { It7ErrorService } from "../services/it7-error.service";
+import { It7AjaxService } from "../services/it7-ajax.service";
 import { TranslationsService }    from '../services/translations.service';
 import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
@@ -12,7 +13,6 @@ import { SearchCriteriaComponent, SearchCriteria } from './search-criteria/searc
 import { ParticipantsListComponent } from './participants-list/participants-list.component'
 import { MyConnectionsComponent } from './my-connections/my-connections.component'
 import { RequestPopupComponent } from './request-popup.component'
-import { Filter } from "../models/filter";
 
 // import {enableProdMode} from '@angular/core';
 // enableProdMode();
@@ -28,6 +28,7 @@ import { Filter } from "../models/filter";
     ],
     providers: [
         It7ErrorService,
+        It7AjaxService,
         TranslationsService,
         ParticipantsService,
         RequestsService,
