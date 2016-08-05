@@ -15,45 +15,45 @@
     <script src="dist/app.bundle.min.js"></script>
     <script>
       var options = {
-          getListsUrl: '',
-          createRequestUrl: '',
-          acceptRequestUrl: '',
-          rejectRequestUrl: '',
-          mockAJAX: true,
+        getListsUrl: '',
+        createRequestUrl: '',
+        acceptRequestUrl: '',
+        rejectRequestUrl: '',
+        mockAJAX: true,
 
-          searchField: 'fname',
-          filters:[
-              {
-                  label: 'Language',
-                  field: 'language',
-                  values: [
-                      {label: 'Ukraine', key: 'ua-ua'},
-                      {label: 'Canada', key: 'ca-fr'}
-                  ],
-                  value: 'ca-fr'
-              },
-              {
-                  label: 'Area of expertise',
-                  field: 'area_of_expertise',
-                  values: [
-                      {label: 'Relax', key: 'relax'},
-                      {label: 'Golf', key: 'golf'},
-                      {label: 'Rock', key: 'rock'},
-                      {label: 'Diving', key: 'diving'},
-                      {label: 'Dream', key: 'dream'},
-                      {label: 'Movie', key: 'movie'}
-                  ],
-                  value: ['dream', 'movie']
-              }
-          ],
+        searchField: 'fname',
+        filters:[
+          {
+            label: 'Language',
+            field: 'language',
+            values: [
+              {label: 'Ukraine', key: 'ua-ua'},
+              {label: 'Canada', key: 'ca-fr'}
+            ],
+            value: 'ca-fr'
+          },
+          {
+            label: 'Area of expertise',
+            field: 'area_of_expertise',
+            values: [
+              {label: 'Relax', key: 'relax'},
+              {label: 'Golf', key: 'golf'},
+              {label: 'Rock', key: 'rock'},
+              {label: 'Diving', key: 'diving'},
+              {label: 'Dream', key: 'dream'},
+              {label: 'Movie', key: 'movie'}
+            ],
+            value: ['dream', 'movie']
+          }
+        ],
 
-          translations:[
-          ],
+        translations:[
+        ],
 
-          participantId: 10,
-          participantsPerPage: 10,
-          participantsSortBy: 'fname',
-          participantsSortDesc: false
+        participantId: 10,
+        participantsPerPage: 10,
+        participantsSortBy: 'fname',
+        participantsSortDesc: false
       };
       RunApplication(options);
     </script>
