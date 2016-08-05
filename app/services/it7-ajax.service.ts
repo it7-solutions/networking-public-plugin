@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Headers, Http, Response, ResponseOptions, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 //import {MockBackend} from "@angular/http/testing";
+import * as _ from 'underscore';
 
 import {It7ErrorService} from "./it7-error.service";
 import {PluginConfig} from "./plugin.config";
