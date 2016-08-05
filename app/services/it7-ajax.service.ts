@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http, Response, ResponseOptions, RequestOptions} from '@angular/http';
+import {Headers, Http, Response, ResponseOptions, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 //import {MockBackend} from "@angular/http/testing";
 import * as _ from 'underscore';
@@ -42,19 +42,28 @@ export class It7AjaxService {
     }
 
     post(url: string, data: any): Promise<any> {
-        let headers = new Headers({'Content-Type': 'application/json'});
+        //let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({ headers: headers });
 
         console.log('send.');
         if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url));}
 
         return this.http
-            .post(url, JSON.stringify(data), options)
-            //.get(url)
+            //.post(url, JSON.stringify(data), options)
+            .post(url, this.urlEncode(data), options)
             .toPromise()
             .then(res => this.checkResponse(res))
             .catch(this.handleError);
 
+    }
+
+    private urlEncode(obj: any): string {
+        let urlSearchParams = new URLSearchParams();
+        for (let key in obj) {
+            urlSearchParams.append(key, obj[key]);
+        }
+        return urlSearchParams.toString();
     }
 
     private checkResponse(res:Response): any{

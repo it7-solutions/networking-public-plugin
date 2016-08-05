@@ -36,19 +36,19 @@ export class DataManagerService {
 
     sendRequest(participantId:number, message: string){
         return this.it7Ajax
-            .post(this.config.createRequestUrl, {message: message, registration_id: participantId})
+            .post(this.config.createRequestUrl, {message: message, participant_id: participantId})
             .then(data => this.syncData(data));
     }
 
     acceptRequest(requestId:number){
         return this.it7Ajax
-            .post(this.config.acceptRequestUrl, {id: requestId})
+            .post(this.config.acceptRequestUrl, {request_id: requestId})
             .then(data => this.syncData(data));
     }
 
     rejectRequest(requestId:number){
         return this.it7Ajax
-            .post(this.config.rejectRequestUrl, {id: requestId})
+            .post(this.config.rejectRequestUrl, {request_id: requestId})
             .then(data => this.syncData(data));
     }
 
@@ -106,8 +106,10 @@ export class DataManagerService {
     private static normalizeRequests(data: any, id: number): Request[] {
         if(data && data.request && _.isArray(data.request)){
             return _.each(data.request, (raw: Request) => {
-                raw._isIncoming = raw.requested_id === id;
-                raw._participant_id = raw._isIncoming ?  raw.registration_id : raw.requested_id;
+                var isIncoming = raw.requested_id === id;
+                var isPending = raw.status === 'pending';
+                raw._participant_id = isIncoming ?  raw.registration_id : raw.requested_id;
+                raw._isVisible = isPending && isIncoming;
                 return raw;
             }) as Request[];
         } else {

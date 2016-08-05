@@ -7,7 +7,7 @@ export class Request {
     status: string;
     message: string;
 
-    _isIncoming: boolean;
+    _isVisible: boolean;
     _participant_id: number;
     _participant: Participant;
 }
