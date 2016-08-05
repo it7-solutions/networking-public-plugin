@@ -4,6 +4,7 @@ import 'rxjs/add/operator/toPromise';
 //import {MockBackend} from "@angular/http/testing";
 
 import {It7ErrorService} from "./it7-error.service";
+import {PluginConfig} from "./plugin.config";
 
 interface It7AjaxResponse {
     error: number
@@ -15,8 +16,9 @@ interface It7AjaxResponse {
 export class It7AjaxService {
 
     constructor(
+        private http: Http,
         private err: It7ErrorService,
-        private http: Http
+        private config:PluginConfig
 //        private backend: MockBackend
     ) {
         // this.backend.connections.subscribe((c:any) => {
@@ -42,7 +44,8 @@ export class It7AjaxService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
 
-        console.log('send');
+        console.log('send.');
+        if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url));}
 
         return this.http
             .post(url, JSON.stringify(data), options)
@@ -51,7 +54,6 @@ export class It7AjaxService {
             .then(res => this.checkResponse(res))
             .catch(this.handleError);
 
-        //return Promise.resolve(this.getMockData(url));
     }
 
     private checkResponse(res:Response): any{
@@ -71,7 +73,7 @@ export class It7AjaxService {
     private getMockData(mod: string = ''):any {
         var areas = ['relax','golf','rock','diving','dream','movie'];
         var m = {
-            participant: _.map(_.range(30), function(n){
+            participant: _.map(_.range(700), function(n){
 
                 return {
                     company: mod + "Company for " + n,

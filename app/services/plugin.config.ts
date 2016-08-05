@@ -7,6 +7,7 @@ export interface PluginOptions {
     createRequestUrl: string
     acceptRequestUrl: string
     rejectRequestUrl: string
+    mockAJAX?: boolean
     participantId: number
     participantsPerPage: number
     participantsSortBy: string
@@ -22,6 +23,7 @@ export class PluginConfig {
     createRequestUrl: string;
     acceptRequestUrl: string;
     rejectRequestUrl: string;
+    mockAJAX: boolean;
     participantId: number;
     participantsPerPage: number;
     participantsSortBy: string;
@@ -35,6 +37,7 @@ export class PluginConfig {
         this.createRequestUrl = options.createRequestUrl;
         this.acceptRequestUrl = options.acceptRequestUrl;
         this.rejectRequestUrl = options.rejectRequestUrl;
+        this.mockAJAX = options.mockAJAX;
         this.participantId = options.participantId;
         this.participantsPerPage = options.participantsPerPage;
         this.participantsSortBy = options.participantsSortBy;

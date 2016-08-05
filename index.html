@@ -18,10 +18,11 @@
         System.import('app')
                 .then(function (m) {
                     var options = {
-                        getListsUrl: '/app/getList.json',
-                        createRequestUrl: '/app/createRequest.json',
-                        acceptRequestUrl: '/app/acceptRequest.json',
-                        rejectRequestUrl: '/app/rejectRequest.json',
+                        getListsUrl: '/getList',
+                        createRequestUrl: '/createRequest',
+                        acceptRequestUrl: '/acceptRequest',
+                        rejectRequestUrl: '/rejectRequest',
+                        mockAJAX: true,
 
                         searchField: 'fname',
                         filters:[
