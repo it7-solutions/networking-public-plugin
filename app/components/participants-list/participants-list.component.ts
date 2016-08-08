@@ -101,7 +101,7 @@ export class ParticipantsListComponent {
 
             isPass && _.each(filters, function (filter:Filter) {
                 var value = p[filter.field];
-                if (value === undefined) {
+                if (!value && typeof value !== "boolean") {
                     isPass = false;
                     return;
                 }
