@@ -96,7 +96,7 @@ export class ParticipantsListComponent {
         _.each(this.list, function(p:Participant) {
             var isPass = true;
 
-            var searchValue = p[searchField];
+            var searchValue = p._search;
             keywords && (isPass = searchValue !== undefined && searchValue.indexOf(keywords) !== -1);
 
             isPass && _.each(filters, function (filter:Filter) {
