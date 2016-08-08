@@ -62,8 +62,6 @@ export class DataManagerService {
         this.participants.setParticipants(participants);
         this.requests.setRequests(requests);
         this.connections.setConnections(connection);
-
-        console.log('syncData finish == ', data);
     }
 
     private linkData(participants:Participant[], requests:Request[], connections:Connection[]) {

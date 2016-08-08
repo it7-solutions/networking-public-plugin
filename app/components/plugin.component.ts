@@ -40,21 +40,14 @@ import { RequestPopupComponent } from './request-popup.component'
 export class PluginComponent {
     @ViewChild(ParticipantsListComponent) participantsList: ParticipantsListComponent;
 
+    private templateBase: string;
+
     constructor(
         private pluginConfig: PluginConfig,
         private dataManager: DataManagerService
     ) {
+        this.templateBase = pluginConfig.templatesBaseUrl;
         console.log('pluginConfig', this.pluginConfig);
-        // Set @Component in code
-        // this._component = {
-        //     selector: 'base-panel',
-        //     template: '<div class="panel" [style.background-color]="color" (click)="onClick($event)">{{content}}</div>',
-        //     styles: [`
-        //       .panel{
-        //         padding: 50px;
-        //       }
-        //       `]
-        // };
     }
 
     getItems() {

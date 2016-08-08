@@ -15,6 +15,7 @@ export interface PluginOptions {
     filters: Filter[]
     searchField: string
     translations: any[]
+    templatesBaseUrl?: string
 }
 
 @Injectable()
@@ -31,6 +32,7 @@ export class PluginConfig {
     filters: Filter[];
     searchField: string;
     translations: any[];
+    templatesBaseUrl: string;
 
     constructor(options:PluginOptions) {
         this.getListsUrl = options.getListsUrl;
@@ -45,5 +47,6 @@ export class PluginConfig {
         this.filters = options.filters;
         this.searchField = options.searchField;
         this.translations = options.translations;
+        this.templatesBaseUrl = options.templatesBaseUrl;
     }
 }
