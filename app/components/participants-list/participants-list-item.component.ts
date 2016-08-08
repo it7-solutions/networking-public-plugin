@@ -19,4 +19,8 @@ export class ParticipantsListItemComponent {
             recipient: this.participant
         });
     }
+
+    expandCollapseClick(){
+        this.participant._expanded = !this.participant._expanded;
+    }
 }

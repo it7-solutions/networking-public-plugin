@@ -1,4 +1,4 @@
-<div *ngIf="!participant._hidden">
+<div *ngIf="!participant._hidden" (click)="expandCollapseClick()">
     <span>{{participant.fname}}</span>
     <span>{{participant.lname}}</span>
     <span>{{participant.email}}</span>
@@ -8,4 +8,7 @@
     <span *ngIf="participant._connection">Connection #{{participant._connection.id}}</span>
     <span *ngIf="!participant._connection && participant._request">Request #{{participant._request.id}}</span>
     <button *ngIf="!participant._request && !participant._connection" (click)="getInTouchClick()">{{ 'Get in touch' | translation }}</button>
+</div>
+<div *ngIf="!participant._hidden && participant._expanded" (click)="expandCollapseClick()">
+    Expanded data for {{participant.fname}} {{participant.lname}}
 </div>

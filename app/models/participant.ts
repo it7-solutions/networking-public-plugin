@@ -14,4 +14,5 @@ export interface Participant {
     _connection?: Connection;
     _hidden: boolean;
     _filteredOut: boolean;
+    _expanded: boolean;
 }
