@@ -16,6 +16,7 @@ export interface PluginOptions {
     searchField: string
     translations: any[]
     templatesBaseUrl?: string
+    onResetFilters?: () => void
 }
 
 @Injectable()
@@ -33,6 +34,7 @@ export class PluginConfig {
     searchField: string;
     translations: any[];
     templatesBaseUrl: string;
+    onResetFilters: () => void;
 
     constructor(options:PluginOptions) {
         this.getListsUrl = options.getListsUrl;
@@ -48,5 +50,6 @@ export class PluginConfig {
         this.searchField = options.searchField;
         this.translations = options.translations;
         this.templatesBaseUrl = options.templatesBaseUrl;
+        this.onResetFilters = typeof options.onResetFilters === 'function' ? options.onResetFilters : () => {};
     }
 }

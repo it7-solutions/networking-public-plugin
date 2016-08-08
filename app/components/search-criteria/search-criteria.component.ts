@@ -46,6 +46,10 @@ export class SearchCriteriaComponent {
         this.multiFilter.updateSelectList();
         this.keywords = '';
         this.onCriteriaChange();
+
+        if(typeof this.config.onResetFilters == 'function'){
+            this.config.onResetFilters();
+        }
     }
 
     onCriteriaChange() {

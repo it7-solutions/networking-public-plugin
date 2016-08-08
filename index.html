@@ -56,7 +56,9 @@
                         participantId: 10,
                         participantsPerPage: 10,
                         participantsSortBy: 'fname',
-                        participantsSortDesc: false
+                        participantsSortDesc: false,
+
+                        onResetFilters: function(){console.log('onResetFilters')}
                     };
                     m.RunApplication(options);
                 })
