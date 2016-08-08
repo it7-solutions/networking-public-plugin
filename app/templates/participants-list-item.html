@@ -7,7 +7,7 @@
     <span>{{participant.area_of_expertise}}</span>
     <span *ngIf="participant._connection">Connection #{{participant._connection.id}}</span>
     <span *ngIf="!participant._connection && participant._request">Request #{{participant._request.id}}</span>
-    <button *ngIf="!participant._request && !participant._connection" (click)="getInTouchClick()">{{ 'Get in touch' | translation }}</button>
+    <button *ngIf="!participant._request && !participant._connection" (click)="getInTouchClick($event)">{{ 'Get in touch' | translation }}</button>
 </div>
 <div *ngIf="!participant._hidden && participant._expanded" (click)="expandCollapseClick()">
     Expanded data for {{participant.fname}} {{participant.lname}}

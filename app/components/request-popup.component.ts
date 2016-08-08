@@ -1,4 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild} from '@angular/core';
+import {
+    Component, EventEmitter, Input, OnInit, OnDestroy, Output, ViewChild, ElementRef,
+    Renderer
+} from '@angular/core';
 
 import { RequestPopupService, RequestPopup } from '../services/request-popup.service';
 import { It7ErrorService } from '../services/it7-error.service';
@@ -10,11 +13,14 @@ import { DataManagerService } from '../services/data-manager.service';
 })
 export class RequestPopupComponent {
     popup: RequestPopup;
+    styleLeft: string;
+    styleTop: string;
 
     constructor(
         private err: It7ErrorService,
         private requestPopupService: RequestPopupService,
-        private dataManager: DataManagerService
+        private dataManager: DataManagerService,
+        private window: Window
     ) {
         this.requestPopupService.popup.subscribe(popup => this.showPopup(popup));
     }
@@ -22,6 +28,7 @@ export class RequestPopupComponent {
     showPopup(popup: RequestPopup){
         if(popup){
             this.popup = popup;
+            this.centerPopup();
         } else {
             this.err.fire('Error: Cannon show Request popup because not enough data');
         }
@@ -34,5 +41,11 @@ export class RequestPopupComponent {
 
     onCancelClick(){
         this.popup = undefined;
+    }
+
+    private centerPopup(){
+        console.log('centerPopup');
+        this.styleTop = (this.window.innerHeight - 450) / 2 + "px";
+        this.styleLeft = (this.window.innerWidth - 800) / 2 + "px";
     }
 }

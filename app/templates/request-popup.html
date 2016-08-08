@@ -1,14 +1,14 @@
 <style>
     .popup {
         position: absolute;
-        width: 50%;
-        height: 50%;
-        left:25%;
-        top: 25%;
+        width: 800px;
+        height: 450px;
+        left: 0;
+        top: 0;
         background-color: #f8f8f8;
     }
 </style>
-<div class="popup" *ngIf="popup">
+<div class="popup" *ngIf="popup" [style.left]="styleLeft" [style.top]="styleTop">
     <h2>{{ 'Request for' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
     <div>{{ 'Enter your message below' | translation }}</div>
     <textarea [(ngModel)]="popup.message"></textarea>

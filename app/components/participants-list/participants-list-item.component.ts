@@ -14,7 +14,8 @@ export class ParticipantsListItemComponent {
     constructor( private requestPopupService: RequestPopupService) {
     }
 
-    getInTouchClick(){
+    getInTouchClick(event:any){
+        event.stopPropagation();
         this.requestPopupService.showPopup({
             recipient: this.participant
         });

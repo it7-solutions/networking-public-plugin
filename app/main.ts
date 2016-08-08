@@ -40,6 +40,7 @@ export function RunApplication(options: PluginOptions) {
         //     deps: [MockBackend, BaseRequestOptions]
         // },
 
+        { provide: Window, useValue: window },
         { provide: PluginConfig, useValue: menuConfig },
         { provide: ViewResolver, useClass: ViewResolverService},
         [{provide: PLATFORM_PIPES, useValue: [TranslationPipe], multi:true}]
