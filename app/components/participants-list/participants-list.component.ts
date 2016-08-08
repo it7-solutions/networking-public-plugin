@@ -81,7 +81,7 @@ export class ParticipantsListComponent {
     }
 
     setFilters(keywords: string, filters: Filter[]){
-        this.keywords = keywords;
+        this.keywords = this.prepareKeywords(keywords);
         this.filters = this.prepareFilters(filters);
         this.filter();
         this.resetVisible();
@@ -125,6 +125,10 @@ export class ParticipantsListComponent {
 
             return !(f.multi ? f.value.length === 0 : (f.value === '' || f.value === undefined));
         });
+    }
+
+    private prepareKeywords(keywords: string): string {
+        return typeof keywords == 'string' ? keywords.toLowerCase() : '';
     }
 
     showMoreRecords(){

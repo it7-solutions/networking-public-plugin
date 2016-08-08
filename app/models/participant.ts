@@ -15,4 +15,5 @@ export interface Participant {
     _hidden: boolean;
     _filteredOut: boolean;
     _expanded: boolean;
+    _search: string;
 }

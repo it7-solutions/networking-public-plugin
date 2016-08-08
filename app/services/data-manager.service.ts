@@ -53,7 +53,7 @@ export class DataManagerService {
     }
 
     private syncData(data: any){
-        var participants = DataManagerService.normalizeParticipants(data);
+        var participants = DataManagerService.normalizeParticipants(data, this.config.searchField);
         var requests = DataManagerService.normalizeRequests(data, this.participantId);
         var connection = DataManagerService.normalizeConnections(data, this.participantId);
 
@@ -93,9 +93,13 @@ export class DataManagerService {
         });
     }
 
-    private static normalizeParticipants(data: any): Participant[] {
+    private static normalizeParticipants(data: any, searchField: string): Participant[] {
         if(data && data.participant && _.isArray(data.participant)){
-            return _.each(data.participant, raw => raw) as Participant[];
+            return _.each(data.participant, (raw:Participant) => {
+                var v = raw[searchField];
+                raw._search = typeof v == 'string' ? v.toLowerCase() : '';
+                return raw;
+            }) as Participant[];
         } else {
             return [];
         }
