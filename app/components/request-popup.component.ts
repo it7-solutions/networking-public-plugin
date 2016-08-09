@@ -3,9 +3,21 @@ import {
     Renderer
 } from '@angular/core';
 
-import { RequestPopupService, RequestPopup } from '../services/request-popup.service';
+import { PopupService, BasePopup } from '../services/popup.service';
 import { It7ErrorService } from '../services/it7-error.service';
 import { DataManagerService } from '../services/data-manager.service';
+import { Participant } from '../models/participant';
+
+export class RequestPopup extends BasePopup {
+    recipient: Participant;
+    message:string;
+
+    constructor(recipient:Participant, message:string = '') {
+        super('RequestPopup');
+        this.recipient = recipient;
+        this.message = message;
+    }
+}
 
 @Component({
     selector: 'request-popup',
@@ -20,14 +32,20 @@ export class RequestPopupComponent {
 
     constructor(
         private err: It7ErrorService,
-        private requestPopupService: RequestPopupService,
+        private requestPopupService: PopupService,
         private dataManager: DataManagerService,
         private window: Window
     ) {
-        this.requestPopupService.popup.subscribe(popup => this.showPopup(popup));
+        this.requestPopupService.popup.subscribe(popup => this.checkPopup(popup));
     }
 
-    showPopup(popup: RequestPopup){
+    private checkPopup(popup: BasePopup){
+        if(popup instanceof RequestPopup){
+            this.showPopup(popup as RequestPopup);
+        }
+    }
+
+    private showPopup(popup: RequestPopup){
         if(popup){
             this.popup = popup;
             this.setOverlay();
@@ -52,7 +70,6 @@ export class RequestPopupComponent {
     }
 
     private centerPopup(){
-        console.log('centerPopup');
         this.styleTop = (this.window.innerHeight - 450) / 2 + "px";
         this.styleLeft = (this.window.innerWidth - 800) / 2 + "px";
     }

@@ -26,17 +26,13 @@ export class SearchCriteriaComponent {
     constructor(private config: PluginConfig) {
       this.keywords = '';
       this.filters = config.filters;
-      console.log(config.filters);
     }
     onKeywordNotify(message:string):void {
-      console.log(message);
       this.keywords = message;
     }
     onFilterNotify(filter: Filter):void {
-      console.log(filter);
     }
     onMultiFilterNotify(message:string):void {
-      console.log(message);
     }
 
     onResetClick() {

@@ -8,11 +8,12 @@ import { ParticipantsService } from '../services/participants.service'
 import { RequestsService } from '../services/requests.service'
 import { ConnectionsService } from '../services/connections.service'
 import { DataManagerService } from '../services/data-manager.service'
-import { RequestPopupService } from '../services/request-popup.service'
 import { SearchCriteriaComponent, SearchCriteria } from './search-criteria/search-criteria.component'
 import { ParticipantsListComponent } from './participants-list/participants-list.component'
 import { MyConnectionsComponent } from './my-connections/my-connections.component'
+import { PopupService } from '../services/popup.service'
 import { RequestPopupComponent } from './request-popup.component'
+import { BusyPopupComponent } from './busy-popup.component'
 
 // import {enableProdMode} from '@angular/core';
 // enableProdMode();
@@ -24,7 +25,8 @@ import { RequestPopupComponent } from './request-popup.component'
         SearchCriteriaComponent,
         ParticipantsListComponent,
         MyConnectionsComponent,
-        RequestPopupComponent
+        RequestPopupComponent,
+        BusyPopupComponent
     ],
     providers: [
         It7ErrorService,
@@ -34,7 +36,7 @@ import { RequestPopupComponent } from './request-popup.component'
         RequestsService,
         ConnectionsService,
         DataManagerService,
-        RequestPopupService
+        PopupService
     ]
 })
 export class PluginComponent {
@@ -47,12 +49,11 @@ export class PluginComponent {
         private dataManager: DataManagerService
     ) {
         this.templateBase = pluginConfig.templatesBaseUrl;
-        console.log('pluginConfig', this.pluginConfig);
     }
 
     getItems() {
         //init plugin
-        this.dataManager.initData().then(function(data){ console.log('data', data)});
+        this.dataManager.initData();
     }
 
     ngOnInit() {
@@ -60,7 +61,6 @@ export class PluginComponent {
     }
 
     onCriteriaNotify(criteria: SearchCriteria):void {
-      console.log('message from plugin.component.ts',criteria);
       this.participantsList.setFilters(criteria.keywords, criteria.filters);
     }
 }

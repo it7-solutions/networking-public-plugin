@@ -11,7 +11,6 @@ export class ParticipantsService {
     public onUpdate: Observable<Participant[]>;
 
     constructor() {
-        console.log('ParticipantsServiceConstructor');
         this.participants = [];
         this._onUpdate = new BehaviorSubject([]);
         this.onUpdate = this._onUpdate.asObservable();
@@ -19,12 +18,10 @@ export class ParticipantsService {
 
     setParticipants(participants:Participant[]){
         this.participants = participants;
-        console.log('setParticipants !!!!!',this.participants.length);
         this._onUpdate.next(this.participants);
     }
 
     getParticipants(): Participant[]{
-        console.log('getParticipants',this.participants.length);
         return this.participants;
     }
 }

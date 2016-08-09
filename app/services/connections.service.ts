@@ -18,12 +18,10 @@ export class ConnectionsService {
 
     setConnections(connections:Connection[]){
         this.connections = connections;
-        console.log('setConnections',this.connections.length);
         this._onUpdate.next(this.connections);
     }
 
     getConnection(): Connection[]{
-        console.log('getRequests',this.connections.length);
         return this.connections;
     }
 }

@@ -10,8 +10,6 @@ export class ViewResolverService extends ViewResolver{
         if(basePath && basePath.length && view.templateUrl){
             view.templateUrl = basePath.replace(/\/$/gm,'') + '/' + view.templateUrl.replace(/^\//gm,'');
         }
-        console.log('!!!!!!!');
-        console.log(view.templateUrl);
         return view;
     }
 }

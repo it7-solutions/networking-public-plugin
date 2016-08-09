@@ -20,33 +20,13 @@ export class It7AjaxService {
         private http: Http,
         private err: It7ErrorService,
         private config:PluginConfig
-//        private backend: MockBackend
-    ) {
-        // this.backend.connections.subscribe((c:any) => {
-        //     console.log('ccc');
-        //     console.log(c);
-        //     let singleTicketMatcher = /\/api\/ticket\/([0-9]+)/i;
-        //
-        //     // return all tickets
-        //     // GET: /ticket
-        //     if (c.request.url === "http://localhost:8080/api/ticket" && c.request.method === 0) {
-        //         // let res = new Response({
-        //         //     body: JSON.stringify({}),
-        //         //     status: 0
-        //         // });
-        //
-        //         //c.mockRespond(res);
-        //         c.mockRespond(new Response(new ResponseOptions({ body: 'fake response' })));
-        //     }
-        // });
-    }
+    ) { }
 
     post(url: string, data: any): Promise<any> {
         //let headers = new Headers({'Content-Type': 'application/json'});
         let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
         let options = new RequestOptions({ headers: headers });
 
-        console.log('send.');
         if(this.config.mockAJAX){return Promise.resolve(this.getMockData(url));}
 
         return this.http
@@ -67,15 +47,11 @@ export class It7AjaxService {
     }
 
     private checkResponse(res:Response): any{
-        console.log('checkResponse');
         return res.json().data;
     }
 
     private handleError(error: any) {
-        console.log('!!!!');
-        console.log(this);
         alert('Server connection error: ' + error);
-        console.error('An error occurred', error);
         this.err.fire('Server connection error: ' + error);
         return Promise.reject(error.message || error);
     }
@@ -142,8 +118,6 @@ export class It7AjaxService {
                 }
             ]
         };
-        console.log('mockData');
-        console.log(JSON.stringify(m));
         return m;
     }
 }

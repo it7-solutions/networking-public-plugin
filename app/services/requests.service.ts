@@ -19,12 +19,10 @@ export class RequestsService {
 
     setRequests(requests:Request[]){
         this.requests = requests;
-        console.log('setParticipants !!!!!',this.requests.length);
         this._onUpdate.next(this.requests);
     }
 
     getRequests(): Request[]{
-        console.log('getRequests',this.requests.length);
         return this.requests;
     }
 }

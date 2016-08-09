@@ -11,10 +11,13 @@ import {Connection} from '../models/connection'
 import {ParticipantsService} from './participants.service';
 import {RequestsService} from './requests.service';
 import {ConnectionsService} from './connections.service'
+import { PopupService, BasePopup } from '../services/popup.service';
+import { BusyPopup } from '../components/busy-popup.component';
 
 @Injectable()
 export class DataManagerService {
     private participantId: number;
+    private popup: BusyPopup;
 
     constructor(
         private config: PluginConfig,
@@ -22,31 +25,36 @@ export class DataManagerService {
         private participants: ParticipantsService,
         private requests: RequestsService,
         private connections: ConnectionsService,
-        private it7Ajax:It7AjaxService
+        private it7Ajax:It7AjaxService,
+        private popupService:PopupService
     ){
         this.participantId = config.participantId
     }
 
     initData(): Promise<any> {
         //return this._getLists().then(data => this.syncData(data));
+        this.showLoading();
         return this.it7Ajax
             .post(this.config.getListsUrl, {})
             .then(data => this.syncData(data));
     }
 
     sendRequest(participantId:number, message: string){
+        this.showLoading();
         return this.it7Ajax
             .post(this.config.createRequestUrl, {message: message, participant_id: participantId})
             .then(data => this.syncData(data));
     }
 
     acceptRequest(requestId:number){
+        this.showLoading();
         return this.it7Ajax
             .post(this.config.acceptRequestUrl, {request_id: requestId})
             .then(data => this.syncData(data));
     }
 
     rejectRequest(requestId:number){
+        this.showLoading();
         return this.it7Ajax
             .post(this.config.rejectRequestUrl, {request_id: requestId})
             .then(data => this.syncData(data));
@@ -62,6 +70,8 @@ export class DataManagerService {
         this.participants.setParticipants(participants);
         this.requests.setRequests(requests);
         this.connections.setConnections(connection);
+
+        this.hideLoading();
     }
 
     private linkData(participants:Participant[], requests:Request[], connections:Connection[]) {
@@ -129,5 +139,16 @@ export class DataManagerService {
         } else {
             return [];
         }
+    }
+
+    private showLoading(){
+        this.popup = new BusyPopup();
+        this.popupService.showPopup(this.popup);
+    }
+
+    private hideLoading(){
+        this.popup.visible = false;
+        this.popupService.showPopup(this.popup);
+        this.popup = undefined;
     }
 }

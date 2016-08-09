@@ -91,7 +91,6 @@ export class ParticipantsListComponent {
     private filter() {
         var filters = this.filters;
         var keywords = this.keywords;
-        var searchField = this.searchField;
 
         _.each(this.list, function(p:Participant) {
             var isPass = true;

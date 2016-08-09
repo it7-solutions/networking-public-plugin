@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 
 import {Participant} from "../../models/participant";
-import { RequestPopupService } from "../../services/request-popup.service";
+import { PopupService } from "../../services/popup.service";
+import {RequestPopup} from "../request-popup.component";
 
 @Component({
     selector: 'participants-list-item',
@@ -11,14 +12,16 @@ export class ParticipantsListItemComponent {
     @Input() participant: Participant;
 
 
-    constructor( private requestPopupService: RequestPopupService) {
+    constructor( private requestPopupService: PopupService) {
     }
 
     getInTouchClick(event:any){
         event.stopPropagation();
-        this.requestPopupService.showPopup({
-            recipient: this.participant
-        });
+        // this.requestPopupService.showPopup({
+        //     recipient: this.participant
+        // });
+        var popup = new RequestPopup(this.participant);
+        this.requestPopupService.showPopup(popup);
     }
 
     expandCollapseClick(){
