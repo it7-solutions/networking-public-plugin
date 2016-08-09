@@ -59,18 +59,6 @@ export class PluginComponent {
         this.getItems();
     }
 
-    tmpUpdateParticipants(){
-        console.log('TMP');
-        var f:any[] = [
-            {value: 'ca-fr', field: 'language'},
-            {value: '', field: 'email'},
-            {value: ['rock', 'golf'], field: 'area_of_expertise'}
-            ];
-        this.participantsList.setFilters('man',<any[]> f);
-        this.participantsList.setSorting('fname', true);
-        //this.dataManager.reinitData();
-    }
-
     onCriteriaNotify(criteria: SearchCriteria):void {
       console.log('message from plugin.component.ts',criteria);
       this.participantsList.setFilters(criteria.keywords, criteria.filters);

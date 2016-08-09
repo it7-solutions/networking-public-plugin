@@ -1,4 +1,4 @@
 <div>
-    <participants-list-header-column></participants-list-header-column>
-    <participants-list-header-column></participants-list-header-column>
+    <participants-list-header-column [title]="'Last name' | translation" [field]="'fname'" [sortByThis]="sortBy == 'fname'" [sortDesc]="sortDesc" (sort)="onSortChange($event)"></participants-list-header-column>
+    <participants-list-header-column [title]="'Last name' | translation" [field]="'lname'" [sortByThis]="sortBy == 'lname'" [sortDesc]="sortDesc" (sort)="onSortChange($event)"></participants-list-header-column>
 </div>

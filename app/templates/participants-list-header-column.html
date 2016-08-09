@@ -1,1 +1,9 @@
-<span>Participants List Header Column</span>
+<style>
+    .sortByThis {
+        color: red;
+    }
+    .sortByThis.sortDesc {
+        color: blue;
+    }
+</style>
+<span [class.sortByThis]="sortByThis" [class.sortDesc]="sortDesc" (click)="onClick()">{{ title }}</span>

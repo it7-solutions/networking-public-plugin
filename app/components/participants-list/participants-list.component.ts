@@ -6,7 +6,8 @@ import { Participant } from "../../models/participant";
 import { ParticipantsService } from '../../services/participants.service';
 import { ParticipantsListItemComponent } from './participants-list-item.component';
 import { ParticipantsListHeaderComponent } from './participants-list-header.component';
-import {Filter} from "../../models/filter";
+import { Filter } from "../../models/filter";
+import { SortOptions } from '../../models/sort'
 
 @Component({
     selector: 'participants-list',
@@ -15,12 +16,12 @@ import {Filter} from "../../models/filter";
 })
 export class ParticipantsListComponent {
     @Input() list: Participant[];
+    sortBy: string;
+    sortDesc: boolean;
 
     recordsFound: number;
     recordsShow: number;
 
-    private sortBy: string;
-    private sortDesc: boolean;
     private visibleStep:number;
     private searchField:string;
 
@@ -63,9 +64,9 @@ export class ParticipantsListComponent {
         console.log('updateList',this.list.length);
     }
 
-    setSorting(fieldName: string, descending: boolean = false){
-        this.sortBy = fieldName.toString();
-        this.sortDesc = !!descending;
+    setSorting(sort:SortOptions){
+        this.sortBy = sort.fieldName.toString();
+        this.sortDesc = !!sort.descending;
         //++ Установить настройки сортировки
         this.sort();
         this.resetVisible();
