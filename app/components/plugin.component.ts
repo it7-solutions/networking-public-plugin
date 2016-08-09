@@ -14,6 +14,7 @@ import { MyConnectionsComponent } from './my-connections/my-connections.componen
 import { PopupService } from '../services/popup.service'
 import { RequestPopupComponent } from './request-popup.component'
 import { BusyPopupComponent } from './busy-popup.component'
+import { ConfirmPopupComponent } from './confirm-popup.component'
 
 // import {enableProdMode} from '@angular/core';
 // enableProdMode();
@@ -26,7 +27,8 @@ import { BusyPopupComponent } from './busy-popup.component'
         ParticipantsListComponent,
         MyConnectionsComponent,
         RequestPopupComponent,
-        BusyPopupComponent
+        BusyPopupComponent,
+        ConfirmPopupComponent
     ],
     providers: [
         It7ErrorService,

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 
 import {Request} from "../../models/request";
 import {DataManagerService} from "../../services/data-manager.service";
+import { PopupService } from "../../services/popup.service";
+import {RequestPopup} from "../request-popup.component";
+import {ConfirmPopup} from "../confirm-popup.component";
 
 @Component({
     selector: 'requests-list-item',
@@ -10,8 +13,10 @@ import {DataManagerService} from "../../services/data-manager.service";
 export class RequestsListItemComponent {
     @Input() request: Request;
 
-    constructor(private dataManager: DataManagerService) {
-    }
+    constructor(
+      private dataManager: DataManagerService,
+      private requestPopupService: PopupService
+    ) {}
 
     onAcceptClick(){
         this.dataManager.acceptRequest(this.request.id);
@@ -19,6 +24,12 @@ export class RequestsListItemComponent {
 
     onRejectClick(){
         this.dataManager.rejectRequest(this.request.id);
+    }
+
+    onRejectClickConfirm(){
+      console.log('confirm popup');
+      var popup = new ConfirmPopup(this.request);
+      this.requestPopupService.showPopup(popup);
     }
 
 }
