@@ -15,6 +15,8 @@ export class RequestPopupComponent {
     popup: RequestPopup;
     styleLeft: string;
     styleTop: string;
+    overlayWidth: string;
+    overlayHeight: string;
 
     constructor(
         private err: It7ErrorService,
@@ -28,6 +30,7 @@ export class RequestPopupComponent {
     showPopup(popup: RequestPopup){
         if(popup){
             this.popup = popup;
+            this.setOverlay();
             this.centerPopup();
         } else {
             this.err.fire('Error: Cannon show Request popup because not enough data');
@@ -41,6 +44,11 @@ export class RequestPopupComponent {
 
     onCancelClick(){
         this.popup = undefined;
+    }
+
+    private setOverlay(){
+        this.overlayHeight = this.window.innerHeight + "px";
+        this.overlayWidth = this.window.innerWidth + "px";
     }
 
     private centerPopup(){
