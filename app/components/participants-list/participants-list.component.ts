@@ -51,7 +51,6 @@ export class ParticipantsListComponent {
 
     ngOnInit() {
         this.participants.onUpdate.subscribe(participants => this.updateList(participants));
-        console.log('onUpdate.subscribe');
         this.resetVisible();
     }
 
@@ -61,7 +60,6 @@ export class ParticipantsListComponent {
         this.sort();
         this.filter();
         this.setVisible();
-        console.log('updateList',this.list.length);
     }
 
     setSorting(sort:SortOptions){
@@ -77,6 +75,8 @@ export class ParticipantsListComponent {
             //return !reverse ? p1.registration_id - p2.registration_id : p2.registration_id - p1.registration_id;
             var v1 = this.sortDesc ? p2[this.sortBy] : p1[this.sortBy];
             var v2 = this.sortDesc ? p1[this.sortBy] : p2[this.sortBy];
+            typeof v1 !== 'string' && (v1 = '');
+            typeof v2 !== 'string' && (v2 = '');
             return v1.localeCompare(v2);
         });
     }
@@ -93,7 +93,6 @@ export class ParticipantsListComponent {
         var keywords = this.keywords;
         var searchField = this.searchField;
 
-        console.log(filters);
         _.each(this.list, function(p:Participant) {
             var isPass = true;
 
