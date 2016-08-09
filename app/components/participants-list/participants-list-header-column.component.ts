@@ -13,11 +13,6 @@ export class ParticipantsListHeaderColumnComponent {
     @Input() title: boolean;
     @Output() sort: EventEmitter<SortOptions> = new EventEmitter<SortOptions>();
 
-    ngAfterViewChecked(){
-        console.log('HEADER this.sortByThis');
-        console.log(this.sortByThis);
-    }
-
     onClick(){
         this.sort.emit({
             fieldName: this.field,

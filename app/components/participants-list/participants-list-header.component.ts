@@ -13,14 +13,7 @@ export class ParticipantsListHeaderComponent {
     @Input() sortDesc: boolean;
     @Output() sort: EventEmitter<SortOptions> = new EventEmitter<SortOptions>();
 
-    ngAfterViewChecked(){
-        console.log('HEADER this.sortBy');
-        console.log(this.sortBy);
-    }
-
     onSortChange(sort: SortOptions){
         this.sort.emit(sort);
-        this.sortBy = sort.fieldName;
-        this.sortDesc = sort.descending;
     }
 }
