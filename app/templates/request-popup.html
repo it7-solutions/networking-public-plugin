@@ -19,11 +19,17 @@
 </style>
 <div class="overlay" *ngIf="popup" [style.width]="overlayWidth" [style.height]="overlayHeight"></div>
 <div class="popup" *ngIf="popup" [style.left]="styleLeft" [style.top]="styleTop">
-    <h2>{{ 'Request for' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
-    <div>{{ 'Enter your message below' | translation }}</div>
-    <textarea [(ngModel)]="popup.message"></textarea>
-    <div>
-        <button (click)="onSendClick()">{{ 'Send Request' | translation }}</button>
-        <button (click)="onCancelClick()">{{ 'Cancel' | translation }}</button>
+    <div *ngIf="!popup.isDone">
+      <h2>{{ 'Request for' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
+      <div>{{ 'Enter your message below' | translation }}</div>
+      <textarea [(ngModel)]="popup.message"></textarea>
+      <div>
+          <button (click)="onSendClick()">{{ 'Send Request' | translation }}</button>
+          <button (click)="onCancelClick()">{{ 'Cancel' | translation }}</button>
+      </div>
+    </div>
+    <div *ngIf="popup.isDone">
+        <h2>{{ 'You sent request to' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
+        <button (click)="onCancelClick()">{{ 'Okay' | translation }}</button>
     </div>
 </div>

@@ -15,6 +15,7 @@ export interface Window {
 export class RequestPopup extends BasePopup {
     recipient: Participant;
     message:string;
+    isDone: boolean;
 
     constructor(recipient:Participant, message:string = '') {
         super('RequestPopup');
@@ -62,8 +63,12 @@ export class RequestPopupComponent {
     }
 
     onSendClick(){
-        this.dataManager.sendRequest(this.popup.recipient.registration_id, this.popup.message);
-        this.popup = undefined;
+        this.dataManager
+          .sendRequest(this.popup.recipient.registration_id, this.popup.message)
+          .then( () => {
+            console.log(this.popup);
+            this.popup.isDone = true;
+          } );
     }
 
     onCancelClick(){
