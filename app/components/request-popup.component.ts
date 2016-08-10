@@ -8,6 +8,10 @@ import { It7ErrorService } from '../services/it7-error.service';
 import { DataManagerService } from '../services/data-manager.service';
 import { Participant } from '../models/participant';
 
+export interface Window {
+    // add some stuff here
+}
+
 export class RequestPopup extends BasePopup {
     recipient: Participant;
     message:string;
@@ -29,14 +33,16 @@ export class RequestPopupComponent {
     styleTop: string;
     overlayWidth: string;
     overlayHeight: string;
+    private window: any;
 
     constructor(
         private err: It7ErrorService,
         private requestPopupService: PopupService,
-        private dataManager: DataManagerService,
-        private window: Window
+        private dataManager: DataManagerService//,
+        //private window: Window
     ) {
         this.requestPopupService.popup.subscribe(popup => this.checkPopup(popup));
+        this.window = window;
     }
 
     private checkPopup(popup: BasePopup){

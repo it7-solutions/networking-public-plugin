@@ -23,13 +23,14 @@ export class ConfirmPopupComponent {
   styleTop: string;
   overlayWidth: string;
   overlayHeight: string;
+  window: any;
 
   constructor(
     private err: It7ErrorService,
     private requestPopupService: PopupService,
-    private window: Window,
     private dataManager: DataManagerService
   ) {
+    this.window = window;
     this.requestPopupService.popup.subscribe(popup => this.checkPopup(popup));
   }
 

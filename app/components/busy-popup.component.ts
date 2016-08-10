@@ -24,11 +24,13 @@ export class BusyPopupComponent{
     styleTop: string;
     overlayWidth: string;
     overlayHeight: string;
+    window: any;
 
     constructor(
-        private popupService: PopupService,
-        private window: Window
+        private popupService: PopupService//,
+        //private window: Window
     ) {
+        this.window = window;
         this.popupService.popup.subscribe(popup => this.checkPopup(popup));
     }
 
