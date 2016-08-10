@@ -29,7 +29,7 @@
       </div>
     </div>
     <div *ngIf="popup.isDone">
-        <h2>{{ 'You sent request to' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
+        <h2>{{ 'Your request has been sent to' | translation }} {{ popup.recipient.fname }}  {{ popup.recipient.lname }}</h2>
         <button (click)="onCancelClick()">{{ 'Okay' | translation }}</button>
     </div>
 </div>
