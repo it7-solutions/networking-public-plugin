@@ -33,7 +33,7 @@ export class DataManagerService {
 
     initData(): Promise<any> {
         //return this._getLists().then(data => this.syncData(data));
-        this.showLoading();
+        //this.showLoading();
         return this.it7Ajax
             .post(this.config.getListsUrl, {})
             .then(data => this.syncData(data));
@@ -147,8 +147,10 @@ export class DataManagerService {
     }
 
     private hideLoading(){
-        this.popup.visible = false;
-        this.popupService.showPopup(this.popup);
-        this.popup = undefined;
+        if(this.popup){
+            this.popup.visible = false;
+            this.popupService.showPopup(this.popup);
+            this.popup = undefined;
+        }
     }
 }
