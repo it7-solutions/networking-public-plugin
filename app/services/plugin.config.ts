@@ -15,6 +15,7 @@ export interface PluginOptions {
     filters: Filter[]
     searchField: string
     translations: any[]
+    onTranslate?: (code:string, text: string) => any
     templatesBaseUrl?: string
     onResetFilters?: () => void
 }
@@ -35,6 +36,7 @@ export class PluginConfig {
     translations: any[];
     templatesBaseUrl: string;
     onResetFilters: () => void;
+    onTranslate: (code:string, text: string) => any;
 
     constructor(options:PluginOptions) {
         this.getListsUrl = options.getListsUrl;
@@ -51,5 +53,6 @@ export class PluginConfig {
         this.translations = options.translations;
         this.templatesBaseUrl = options.templatesBaseUrl;
         this.onResetFilters = typeof options.onResetFilters === 'function' ? options.onResetFilters : () => {};
+        this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
     }
 }

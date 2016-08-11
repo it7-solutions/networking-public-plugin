@@ -51,6 +51,7 @@
                         ],
 
                         translations:[
+                            {code: 'accept', value: 'ACCEPT'}
                         ],
 
                         participantId: 10,
@@ -58,7 +59,8 @@
                         participantsSortBy: 'fname',
                         participantsSortDesc: false,
 
-                        onResetFilters: function(){console.log('onResetFilters')}
+                        onResetFilters: function(){console.log('onResetFilters')},
+                        onTranslate: function(code, text){console.log(code, text)}
                     };
                     m.RunApplication(options);
                 })
