@@ -27,11 +27,20 @@ export class SearchCriteriaComponent {
       this.keywords = '';
       this.filters = config.filters;
     }
+
+    ngAfterViewInit(){
+        if(typeof this.config.onInitFilters == 'function'){
+            this.config.onInitFilters();
+        }
+    }
+
     onKeywordNotify(message:string):void {
       this.keywords = message;
     }
+
     onFilterNotify(filter: Filter):void {
     }
+
     onMultiFilterNotify(message:string):void {
     }
 

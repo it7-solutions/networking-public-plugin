@@ -18,6 +18,7 @@ export interface PluginOptions {
     onTranslate?: (code:string, text: string) => any
     templatesBaseUrl?: string
     onResetFilters?: () => void
+    onInitFilters?: () => void
 }
 
 @Injectable()
@@ -36,6 +37,7 @@ export class PluginConfig {
     translations: any[];
     templatesBaseUrl: string;
     onResetFilters: () => void;
+    onInitFilters: () => void;
     onTranslate: (code:string, text: string) => any;
 
     constructor(options:PluginOptions) {
@@ -53,6 +55,7 @@ export class PluginConfig {
         this.translations = options.translations;
         this.templatesBaseUrl = options.templatesBaseUrl;
         this.onResetFilters = typeof options.onResetFilters === 'function' ? options.onResetFilters : () => {};
+        this.onInitFilters = typeof options.onInitFilters === 'function' ? options.onInitFilters : () => {};
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
     }
 }
