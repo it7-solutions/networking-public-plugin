@@ -1,5 +1,5 @@
 <div>{{ 'Participants List' | translation }}</div>
-<div>{{ 'show' | translation }} {{ recordsShow }} {{ 'from' | translation }} {{ recordsFound }}</div>
+<div>{{ 'Show %1$s participants from %2$s' | translation:recordsShow:recordsFound }}</div>
 <participants-list-header [sortBy]="sortBy" [sortDesc]="sortDesc" (sort)="setSorting($event)"></participants-list-header>
 <participants-list-item *ngFor="let participant of list" [participant]="participant"></participants-list-item>
 <button *ngIf="recordsShow < recordsFound" (click)="showMoreRecords()">{{ 'Show next' | translation }} {{visibleStep}}</button>

@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {vsprintf} from "sprintf-js";
 
 import {PluginConfig} from './plugin.config';
 
@@ -15,9 +16,8 @@ export class TranslationsService {
         window['t'] = this.codes;
     }
 
-    public translate(text: string): string {
-        var t = this.getTranslation(this.buildCode(text), text);
-        return t;
+    public translate(text: string, parameters: string[]): string {
+        return this.getTranslation(this.buildCode(text), text, parameters);
     }
 
     private buildCode(text:string):string{
@@ -26,7 +26,7 @@ export class TranslationsService {
         return code;
     }
 
-    private getTranslation(code:string, fallback: string):string{
+    private getTranslation(code:string, fallback: string, parameters: string[]):string{
         var translation: any;
         // If exist custom translate function - call
         if(typeof this.config.onTranslate === 'function'){
@@ -37,7 +37,12 @@ export class TranslationsService {
             translation = this.translationsByCode[code];
         }
         // If not fount translations - use fallback
-        return translation === undefined ? fallback : translation;
+        translation === undefined && (translation = fallback);
+
+        // If pass parameters - render with sprintf
+        parameters && (translation = vsprintf(translation, parameters));
+
+        return translation;
     }
 
     private static indexTranslations(translations: any[]):any{

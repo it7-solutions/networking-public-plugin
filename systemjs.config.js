@@ -21,7 +21,8 @@
   };
 
   var paths = {
-    underscore: './node_modules/underscore/underscore.js'
+    underscore: './node_modules/underscore/underscore.js',
+    'sprintf-js': './node_modules/sprintf-js/src/sprintf.js'
   };
 
   var ngPackageNames = [
