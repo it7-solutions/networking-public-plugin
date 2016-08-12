@@ -47,11 +47,14 @@ export class It7AjaxService {
     }
 
     private checkResponse(res:Response): any{
+        var response = res.json();
+        if(response.error){
+            this.err.fire('Server request error: ' + response.errorMessage);
+        }
         return res.json().data;
     }
 
     private handleError(error: any) {
-        alert('Server connection error: ' + error);
         this.err.fire('Server connection error: ' + error);
         return Promise.reject(error.message || error);
     }
