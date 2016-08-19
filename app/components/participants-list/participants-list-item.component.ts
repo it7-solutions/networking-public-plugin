@@ -3,10 +3,12 @@ import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angu
 import {Participant} from "../../models/participant";
 import { PopupService } from "../../services/popup.service";
 import {RequestPopup} from "../request-popup.component";
+import {JoinPipe} from "../../pipes/join.pipe";
 
 @Component({
     selector: 'participants-list-item',
-    templateUrl: '/app/templates/participants-list-item.html'
+    templateUrl: '/app/templates/participants-list-item.html',
+    pipes: [JoinPipe]
 })
 export class ParticipantsListItemComponent {
     @Input() participant: Participant;
