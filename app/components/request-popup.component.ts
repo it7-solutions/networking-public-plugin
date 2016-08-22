@@ -66,7 +66,6 @@ export class RequestPopupComponent {
         this.dataManager
           .sendRequest(this.popup.recipient.registration_id, this.popup.message)
           .then( () => {
-            console.log(this.popup);
             this.popup.isDone = true;
           } );
     }

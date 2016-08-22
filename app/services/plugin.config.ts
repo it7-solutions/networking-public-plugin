@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 
-import { Filter } from "../models/filter";
+import {Filter, FilterMultiLogic} from "../models/filter";
+import * as _ from "underscore";
 
 export interface PluginOptions {
     getListsUrl: string
@@ -57,5 +58,17 @@ export class PluginConfig {
         this.onResetFilters = typeof options.onResetFilters === 'function' ? options.onResetFilters : () => {};
         this.onInitFilters = typeof options.onInitFilters === 'function' ? options.onInitFilters : () => {};
         this.onTranslate = typeof options.onTranslate === 'function' ? options.onTranslate : () => {};
+
+        // Convert multi-filters logic humanized name to FilterMultiLogic enum
+        _.each(this.filters, function(f:Filter){
+            switch(f.multiLogic as any){
+                case 'and':
+                    f.multiLogic = FilterMultiLogic.And;
+                    break;
+                case 'or':
+                    f.multiLogic = FilterMultiLogic.Or;
+                    break;
+            }
+        });
     }
 }

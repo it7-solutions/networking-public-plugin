@@ -6,7 +6,7 @@ import { Participant } from "../../models/participant";
 import { ParticipantsService } from '../../services/participants.service';
 import { ParticipantsListItemComponent } from './participants-list-item.component';
 import { ParticipantsListHeaderComponent } from './participants-list-header.component';
-import { Filter } from "../../models/filter";
+import { Filter, FilterMultiLogic } from "../../models/filter";
 import { SortOptions } from '../../models/sort'
 
 @Component({
@@ -105,10 +105,23 @@ export class ParticipantsListComponent {
                     return;
                 }
                 if(filter.multi) {
+                    // Count the number of satisfied filters
                     var satisfyCount = _.filter(filter.value, function(v:any){
                         return value.indexOf(v) !== -1;
                     }).length;
-                    satisfyCount !== filter.value.length && (isPass = false);
+                    // Calculate the success depends on the type of logic
+                    switch (filter.multiLogic){
+                        case FilterMultiLogic.And:
+                            if(satisfyCount !== filter.value.length) {
+                                isPass = false;
+                            }
+                            break;
+
+                        default:
+                            if(0 === satisfyCount && 0 < filter.value.length) {
+                                isPass = false;
+                            }
+                    }
                 } else {
                     value !== filter.value && (isPass = false);
                 }
@@ -121,6 +134,8 @@ export class ParticipantsListComponent {
     private prepareFilters(filters:Filter[]):Filter[] {
         return _.filter(filters, function (f:Filter) {
             f.multi = _.isArray(f.value);
+            // If multi-logic undefined - use Or
+            f.multiLogic = undefined === f.multiLogic ? FilterMultiLogic.Or : f.multiLogic;
 
             return !(f.multi ? f.value.length === 0 : (f.value === '' || f.value === undefined));
         });

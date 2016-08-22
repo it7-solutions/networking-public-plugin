@@ -27,7 +27,6 @@ export class RequestsListItemComponent {
     }
 
     onRejectClickConfirm(){
-      console.log('confirm popup');
       var popup = new ConfirmPopup(this.request);
       this.requestPopupService.showPopup(popup);
     }
